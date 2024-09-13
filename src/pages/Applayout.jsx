@@ -1,5 +1,6 @@
 import MapBox from "../components/MapBox";
 import PageNav from "../components/PageNav";
+import Footer from "../components/Footer";
 
 function Applayout() {
   return (
@@ -78,6 +79,7 @@ function Applayout() {
           </section>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
