@@ -1,7 +1,22 @@
+ import { useNavigate } from "react-router-dom";
 import PageNav from "../components/PageNav";
 import { NavLink } from "react-router-dom";
 import signupimg from "/signupimg.png";
+
 function Registerpage() {
+  // Initialize the useNavigate hook
+  const navigate = useNavigate();
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Add form validation logic or API request here for signup
+
+    // After successful signup, redirect to the homepage
+    navigate("/");
+  };
+
   return (
     <div className="relative isolate px-6 pt-14 lg:px-8">
       <PageNav />
@@ -38,7 +53,7 @@ function Registerpage() {
                     <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                       Create an account
                     </h1>
-                    <form className="space-y-4 md:space-y-6" action="#">
+                    <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                       <div>
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                           Your email
@@ -70,7 +85,7 @@ function Registerpage() {
                           Confirm password
                         </label>
                         <input
-                          type="confirm-password"
+                          type="password"
                           name="confirm-password"
                           id="confirm-password"
                           placeholder="••••••••"
@@ -106,3 +121,5 @@ function Registerpage() {
 }
 
 export default Registerpage;
+
+    
