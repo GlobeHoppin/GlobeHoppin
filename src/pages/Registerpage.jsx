@@ -115,7 +115,7 @@ function Registerpage() {
                         Already have an account?{" "}
                         <NavLink
                           to="/signin"
-                          className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                          className="font-medium text-blue-700 hover:underline dark:text-primary-500"
                         >
                           Login
                         </NavLink>
