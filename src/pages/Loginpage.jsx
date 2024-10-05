@@ -101,7 +101,7 @@ function Loginpage() {
                           Don’t have an account yet?{" "}
                           <NavLink
                             to="/register"
-                            className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                            className="font-medium text-blue-700 hover:underline dark:text-primary-500"
                           >
                             Sign up
                           </NavLink>
