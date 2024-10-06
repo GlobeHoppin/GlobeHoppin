@@ -1,0 +1,17 @@
+name: Auto-Assign Issues
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  auto-assign:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+    - name: Auto-Assign Issue
+      uses: actions-ecosystem/action-assign@v1
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        assignees: ${{ github.actor }}
