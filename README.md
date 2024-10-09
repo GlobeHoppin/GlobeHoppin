@@ -1,4 +1,4 @@
-# GlobeHoppinn🌟
+# GlobeHoppin🌟
 
 
 ### Introduction
