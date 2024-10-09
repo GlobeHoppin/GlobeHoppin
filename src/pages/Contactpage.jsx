@@ -1,4 +1,6 @@
 import PageNav from "../components/PageNav";
+import Footer from "../components/Footer";
+
 function Contactpage() {
   return (
     <div className="relative isolate px-6 pt-14 lg:px-8">
@@ -59,6 +61,7 @@ function Contactpage() {
           </div>
         </section>
       </div>
+      <Footer />
     </div>
   );
 }
