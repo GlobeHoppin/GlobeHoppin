@@ -190,6 +190,8 @@ function Homepage() {
 
         </div>
       </div>
+      <FAQ />
+
       <Footer />
     </>
   );
