@@ -7,6 +7,7 @@ import {
   ChatBubbleBottomCenterTextIcon,
   ShareIcon,
 } from "@heroicons/react/24/outline";
+import FlowChart from "./Flowchart";
 
 function Homepage() {
   const features = [
@@ -153,9 +154,10 @@ function Homepage() {
                   ))}
                 </dl>
               </div>
+              <br />
+          <FlowChart/>
             </div>
           </div>
-
           <div className="rounded-md py-24 sm:py-32">
             <div className="mx-auto max-w-7xl px-5 lg:px-8 text-center">
               <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl">
