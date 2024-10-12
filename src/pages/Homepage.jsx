@@ -87,9 +87,8 @@ function Homepage() {
             </div>
             <div className="text-center">
               <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-                You Travel the{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
-                  World
+                You Travel the World
                 </span>
               </h1>
               <p className="text-gray-100 sm:text-4xl mt-2">
@@ -159,9 +158,8 @@ function Homepage() {
           <div className="rounded-md py-24 sm:py-32">
             <div className="mx-auto max-w-7xl px-5 lg:px-8 text-center">
               <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl">
-                Explore the{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
-                  World
+                Explore the World                
                 </span>
               </h1>
               <div className="py-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
