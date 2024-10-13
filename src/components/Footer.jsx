@@ -83,28 +83,24 @@ function Footer() {
                   title="facebook"
                 />
               </a>
-
               <a href="#">
                 <BsDiscord
                   className="text-gray-500 ml-4 cursor-pointer hover:text-white duration-200 hover:scale-125"
                   title="discord"
                 />
               </a>
-
               <a href="#">
                 <BsTwitterX
                   className="text-gray-500 ml-4 cursor-pointer hover:text-white hover:scale-125 duration-200"
                   title="twitter"
                 />
               </a>
-
               <a href="#">
                 <BsGithub
                   className="text-gray-500 hover:text-white ml-4 cursor-pointer duration-200 hover:scale-125"
                   title="github"
                 />
               </a>
-
               <a href="#">
                 <BsDribbble
                   className="text-gray-500 hover:text-white duration-200 hover:scale-125 ml-4 cursor-pointer"
