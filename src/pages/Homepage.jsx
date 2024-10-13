@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import PageNav from "../components/PageNav";
 import Footer from "../components/Footer";
@@ -7,8 +8,15 @@ import {
   ChatBubbleBottomCenterTextIcon,
   ShareIcon,
 } from "@heroicons/react/24/outline";
+import faqData from "../data/faqData.json";  // Import the FAQ data
 
 function Homepage() {
+  const [openQuestion, setOpenQuestion] = useState(null);
+
+  const toggleQuestion = (index) => {
+    setOpenQuestion(openQuestion === index ? null : index);
+  };
+
   const features = [
     {
       name: "Pin Your Location",
@@ -177,8 +185,13 @@ function Homepage() {
               </div>
             </div>
           </div>
+
+          
+
         </div>
       </div>
+      <FAQ />
+
       <Footer />
     </>
   );
