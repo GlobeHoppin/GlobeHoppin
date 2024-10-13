@@ -75,14 +75,11 @@ To submit a pull request:
 4. Make your changes and commit them:
 
    ```bash
+   git reset --soft $(git merge-base main HEAD)
    git add .
-   git commit -m "Add a brief description of your changes"
-   ```
-
-5. Push your branch to your forked repository:
-
-   ```bash
-   git push origin your-branch-name
+   git commit -m 'commit message'
+   git push origin <branch-name> --force-with-l
+ 
    ```
 
 6. Go to the original repository and create a pull request. In your pull request:
