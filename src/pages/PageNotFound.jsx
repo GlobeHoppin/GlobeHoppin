@@ -1,12 +1,17 @@
-import PageNav from "../components/PageNav";
+import './index.css'
+import {Link} from 'react-router-dom'
+import './PageNotFound.css'
+const NotFound = () => (
+  <div className="not-found-container">
+    <img
+      src="https://assets.ccbp.in/frontend/react-js/not-found-blog-img.png"
+      alt="not found"
+      className="not-found-img"
+    />
+    <Link to="/">
+    <button className='Button'>Go Back Home</button>
+    </Link>
+  </div>
+)
 
-function PageNotFound() {
-  return (
-    <div>
-      <PageNav />
-      404!!..Page Not Found
-    </div>
-  );
-}
-
-export default PageNotFound;
+export default NotFound
