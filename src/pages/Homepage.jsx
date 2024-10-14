@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import PageNav from "../components/PageNav";
 import Footer from "../components/Footer";
@@ -8,15 +7,9 @@ import {
   ChatBubbleBottomCenterTextIcon,
   ShareIcon,
 } from "@heroicons/react/24/outline";
-import faqData from "../data/faqData.json";  // Import the FAQ data
+import FAQ from "../components/FAQ";
 
 function Homepage() {
-  const [openQuestion, setOpenQuestion] = useState(null);
-
-  const toggleQuestion = (index) => {
-    setOpenQuestion(openQuestion === index ? null : index);
-  };
-
   const features = [
     {
       name: "Pin Your Location",
@@ -100,99 +93,73 @@ function Homepage() {
                   World
                 </span>
               </h1>
-              <p className="text-gray-100 sm:text-4xl mt-2">
-                GlobeHoppin keeps track of your adventures.
+              <p className="text-gray-100 sm:text-lg md:mb-12 md:text-xl">
+                Discover hidden gems, share experiences, and capture your
+                journeys with our app.
               </p>
-              <p className="mt-6 text-lg leading-8 text-gray-300">
-                A world map that tracks your footsteps into every city you can
-                think of. Never forget your wonderful experiences, and show your
-                friends how you have wandered the world.
-              </p>
-              <div className="mt-10 flex items-center justify-center gap-x-6">
+              <div className="flex justify-center gap-x-6">
                 <NavLink
-                  to="/app"
+                  to="/login"
                   className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
-                  Get started
+                  Login
+                </NavLink>
+                <NavLink
+                  to="/register"
+                  className="rounded-md px-3.5 py-2.5 text-sm font-semibold text-gray-900 border border-gray-900 hover:border-gray-500"
+                >
+                  Register
                 </NavLink>
               </div>
             </div>
           </div>
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-          >
-            <div
-              style={{
-                clipPath:
-                  "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-              }}
-              className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-            />
-          </div>
-
-          <div className="bg-gray-200 rounded-md py-24 sm:py-32">
-            <div className="mx-auto max-w-7xl px-5 lg:px-8">
-              <div className="mx-auto max-w-2xl lg:text-center">
-                <p className="mt-2 text-3xl font-bold tracking-tight text-indigo-600 sm:text-4xl">
-                  Everything you need to Know
-                </p>
-                <p className="mt-6 text-lg leading-8 text-gray-800">
-                  Steps to use this App
-                </p>
-              </div>
-              <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
-                <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
-                  {features.map((feature) => (
-                    <div key={feature.name} className="relative pl-16">
-                      <dt className="text-base font-semibold leading-7 text-gray-900">
-                        <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
-                          <feature.icon
-                            aria-hidden="true"
-                            className="h-6 w-6 text-white"
-                          />
-                        </div>
-                        {feature.name}
-                      </dt>
-                      <dd className="mt-2 text-base leading-7 text-gray-600">
-                        {feature.description}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-md py-24 sm:py-32">
-            <div className="mx-auto max-w-7xl px-5 lg:px-8 text-center">
-              <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl">
-                Explore the{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
-                  World
-                </span>
-              </h1>
-              <div className="py-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-                {data.map(({ imageLink }, index) => (
-                  <div key={index}>
-                    <img
-                      className="h-40 w-full max-w-full rounded-lg object-cover object-center"
-                      src={imageLink}
-                      alt="gallery-photo"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          
-
         </div>
-      </div>
-      <FAQ />
 
-      <Footer />
+        {/* Features Section */}
+        <div className="bg-gray-900 py-16">
+          <h2 className="text-3xl font-bold text-center text-white mb-10">
+            Features
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto px-4">
+            {features.map((feature) => (
+              <div
+                key={feature.name}
+                className="bg-gray-800 rounded-lg p-6 flex flex-col items-center text-center"
+              >
+                <feature.icon className="h-16 w-16 text-indigo-500 mb-4" />
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  {feature.name}
+                </h3>
+                <p className="text-gray-400">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Image Gallery Section */}
+        <div className="py-16">
+          <h2 className="text-3xl font-bold text-center text-white mb-10">
+            Gallery
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">
+            {data.map((item, index) => (
+              <div key={index} className="overflow-hidden rounded-lg shadow-lg">
+                <img
+                  src={item.imageLink}
+                  alt={`Gallery image ${index + 1}`}
+                  className="w-full h-56 object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        <section id="faq">
+          {/* FAQ Section */}
+          <FAQ /> {/* This will render the FAQ section */}
+        </section>
+
+        <Footer />
+      </div>
     </>
   );
 }
