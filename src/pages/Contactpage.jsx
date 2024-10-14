@@ -1,5 +1,58 @@
+import { useState } from "react";
 import PageNav from "../components/PageNav";
+import { EMAIL_NOTIFICATION_ENDPOINT } from "../ApiEndpoints";
+
 function Contactpage() {
+  const [formData, setFormData] = useState({
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const [statusMessage, setStatusMessage] = useState("");
+
+  // Handle form input change
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  // Function to submit form data to the API
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Create payload to send to the backend
+    const payload = {
+      subject: formData.subject,
+      email: formData.email,
+      message: formData.message,
+    };
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_BASE_URL}${EMAIL_NOTIFICATION_ENDPOINT}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      if (response.ok) {
+        setStatusMessage("Message sent successfully!");
+      } else {
+        setStatusMessage("Failed to send the message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error sending request:", error);
+      setStatusMessage("There was an error sending your message.");
+    }
+  };
+
   return (
     <div className="relative isolate px-6 pt-14 lg:px-8">
       <PageNav />
@@ -13,7 +66,11 @@ function Contactpage() {
               Got a technical issue? Want to send feedback about a beta feature?
               Need details about our plans? Let us know.
             </p>
-            <form action="#" className="space-y-8">
+
+            {/* Status message */}
+            {statusMessage && <p className="text-center">{statusMessage}</p>}
+
+            <form onSubmit={handleSubmit} className="space-y-8">
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                   Your email
@@ -21,6 +78,8 @@ function Contactpage() {
                 <input
                   type="email"
                   id="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                   placeholder="name@globehoppin.com"
                   required
@@ -33,6 +92,8 @@ function Contactpage() {
                 <input
                   type="text"
                   id="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
                   className="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                   placeholder="Let us know how we can help you"
                   required
@@ -44,6 +105,8 @@ function Contactpage() {
                 </label>
                 <textarea
                   id="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   rows="6"
                   className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   placeholder="Leave a comment..."
