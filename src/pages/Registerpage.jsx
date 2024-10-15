@@ -6,7 +6,7 @@ function Registerpage() {
     <div className="relative isolate px-6 pt-14 lg:px-8">
       <PageNav />
       <div className="mx-auto text-gray-200">
-        <div className="grid md:grid-cols-2">
+        <div className="grid justify-center items-center md:grid-cols-2">
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
             <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-40">
               <div className="text-center">
@@ -30,10 +30,10 @@ function Registerpage() {
               </div>
             </div>
           </div>
-          <div className="">
+          <div className="h-screen flex md:block justify-center items-center">
             <section className="bg-gray-50 dark:bg-gray-900">
               <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                <div className="w-full bg-white px-8 md:px-0 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                   <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                       Create an account
@@ -47,7 +47,7 @@ function Registerpage() {
                           type="email"
                           name="email"
                           id="email"
-                          className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block  sm:w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
                           placeholder="name@email.com"
                           required=""
                         />
@@ -61,7 +61,7 @@ function Registerpage() {
                           name="password"
                           id="password"
                           placeholder="••••••••"
-                          className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block sm:w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           required=""
                         />
                       </div>
@@ -74,7 +74,7 @@ function Registerpage() {
                           name="confirm-password"
                           id="confirm-password"
                           placeholder="••••••••"
-                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block sm:w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           required=""
                         />
                       </div>
