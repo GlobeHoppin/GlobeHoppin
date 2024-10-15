@@ -106,7 +106,7 @@ function Footer() {
                   className="text-gray-500 hover:text-white duration-200 hover:scale-125 ml-4 cursor-pointer"
                   title="dribble"
                 />
-a              </a>
+              </a>
             </div>
           </div>
         </div>
