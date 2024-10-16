@@ -6,6 +6,9 @@ import PageNotFound from "./pages/PageNotFound";
 import "./App.css";
 import Applayout from "./pages/Applayout";
 import Contactpage from "./pages/Contactpage";
+import BookingPage from "./pages/booking";
+
+import YourBookings from "./pages/YourBookings";
 import Loginpage from "./pages/Loginpage";
 import Registerpage from "./pages/Registerpage";
 
@@ -17,6 +20,11 @@ const App = () => {
           <Route path="/" element={<Homepage />} />
           <Route path="app" element={<Applayout />} />
           <Route path="contact" element={<Contactpage />} />
+          
+          <Route path="BookingPage" element={<BookingPage />} />
+          
+          <Route path="YourBookings" element={<YourBookings />} />
+          
           <Route path="about" element={<Aboutpage />} />
           <Route path="signin" element={<Loginpage />} />
           <Route path="register" element={<Registerpage />} />
