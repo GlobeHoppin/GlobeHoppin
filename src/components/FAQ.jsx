@@ -1,11 +1,16 @@
 import { useState } from "react";
 import faqData from "../data/faqData.json";
 
-function FAQ () {
+function FAQ() {
   const [openQuestion, setOpenQuestion] = useState(null);
+  const [visibleFaqs, setVisibleFaqs] = useState(5); // Initially show 5 FAQs
 
   const toggleQuestion = (index) => {
     setOpenQuestion(openQuestion === index ? null : index);
+  };
+
+  const loadMoreFaqs = () => {
+    setVisibleFaqs((prevVisibleFaqs) => prevVisibleFaqs + 5); // Load 5 more FAQs
   };
 
   return (
@@ -13,7 +18,7 @@ function FAQ () {
       <div className="mx-auto w-full max-w-7xl px-45">
         <h2 className="text-5xl font-bold text-white mb-8 text-center">Frequently Asked Questions</h2>
         <div className="space-y-3">
-          {faqData.map((faq, index) => (
+          {faqData.slice(0, visibleFaqs).map((faq, index) => (
             <div key={index} className="bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-700 transition-all duration-300 hover:border-gray-600">
               <button
                 className="flex justify-between items-center w-full text-left px-5 py-4"
@@ -30,15 +35,21 @@ function FAQ () {
                 </svg>
               </button>
               <div 
-                className={`px-5 py-3 bg-gray-700 bg-opacity-50 transition-all duration-200 ease-in-out ${
-                  openQuestion === index ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
-                }`}
+                className={`px-5 py-3 bg-gray-700 bg-opacity-50 transition-all duration-200 ease-in-out ${openQuestion === index ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}
               >
                 <p className=" text-gray-400 text-base leading-relaxed">{faq.answer}</p>
-
               </div>
             </div>
           ))}
+
+          {visibleFaqs < faqData.length && (
+            <button
+              onClick={loadMoreFaqs}
+              className="mt-4 px-6 py-2 bg-violet-600 text-white rounded-lg hover:bg-blue-700 transition duration-300 block mx-auto"
+            >
+              LOAD MORE
+            </button>
+          )}
         </div>
       </div>
     </section>
