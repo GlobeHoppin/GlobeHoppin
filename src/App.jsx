@@ -9,6 +9,7 @@ import Applayout from "./pages/Applayout";
 import Contactpage from "./pages/Contactpage";
 import Loginpage from "./pages/Loginpage";
 import Registerpage from "./pages/Registerpage";
+import TripBudgetCalculator from "./pages/TripBudgetCalculatorPage";
 
 const App = () => {
   return (
@@ -21,8 +22,7 @@ const App = () => {
           <Route path="about" element={<Aboutpage />} />
           <Route path="signin" element={<Loginpage />} />
           <Route path="register" element={<Registerpage />} />
-          <Route path="/Terms" element={<TermsOfUse/>}/>
-          <Route path="/PrivacyPolicy" element={<PrivacyPolicy/>}/>
+          <Route path="trip-budget" element={<TripBudgetCalculator />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
