@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import PageNav from "../components/PageNav";
 import loginimg from "/loginimg.png";
+import Footer from "../components/Footer";
 
 function Loginpage() {
   return (
@@ -115,6 +116,7 @@ function Loginpage() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

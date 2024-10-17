@@ -20,7 +20,9 @@ const App = () => {
           <Route path="about" element={<Aboutpage />} />
           <Route path="signin" element={<Loginpage />} />
           <Route path="register" element={<Registerpage />} />
+
           <Route path="faq" element={<FAQPage />} /> {/* Add the FAQPage route */}
+
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
