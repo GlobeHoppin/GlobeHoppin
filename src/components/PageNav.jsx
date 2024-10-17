@@ -22,6 +22,7 @@ const navigation = [
   { name: "BookingPage", href: "/BookingPage", current: false },
   
   { name: "YourBookings", href: "/YourBookings", current: false },
+  { name: "Guide", href: "/Famous", current: false },
   
 ];
 

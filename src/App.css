@@ -32,3 +32,63 @@ select {
     color:black; /* Set the text color for select options */
     background-color:white; /* Set background color for select */
 }
+.card {
+    position: relative;
+    width: 100%; /* Full width */
+    height: 250px; /* Increase height for sub-cards */
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    margin: 10px; /* Add margin for spacing */
+  }
+  
+  .front,
+  .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Hide back when front is visible */
+    border-radius: 8px; /* Round corners */
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    color: white; /* Text color for front */
+    font-size: 1.5rem; /* Increase font size for front */
+    padding: 20px; /* Add padding for more space */
+    text-align: center; /* Center text */
+    word-wrap: break-word; /* Handle long words */
+  }
+  
+  .front {
+    background: linear-gradient(135deg, #ffcc00, #ff6600); /* Gradient for front */
+  }
+  
+  .back {
+    background: linear-gradient(135deg, #0073ff, #00c6ff); /* Gradient for back */
+    transform: rotateY(180deg); /* Rotate back side */
+    color: black; /* Change text color to black */
+    font-size: 1rem; /* Reduce font size for back text */
+    padding: 15px; /* Optional: adjust padding if necessary */
+    display: flex; /* Keep flexbox layout */
+    flex-direction: column; /* Arrange items in a column */
+    justify-content: center; /* Center vertically */
+    text-align: center; /* Center text */
+  }
+  
+  .perspective {
+    perspective: 1000px; /* Create a perspective effect */
+  }
+  
+  .flip-card {
+    transform: rotateY(180deg); /* Flip the card when expanded */
+  }
+  
+  /* Additional styles for sub-card containers */
+  .grid {
+    gap: 20px; /* Increase gap between sub-cards */
+  }
+  
+  h3 {
+    font-size: 1.8rem; /* Larger font size for name */
+    margin: 0; /* Remove default margin */
+  }
+  
