@@ -10,6 +10,7 @@ import Contactpage from "./pages/Contactpage";
 import Loginpage from "./pages/Loginpage";
 import Registerpage from "./pages/Registerpage";
 import TripBudgetCalculator from "./pages/TripBudgetCalculatorPage";
+import ReviewsAndRatings from "./pages/Review";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="signin" element={<Loginpage />} />
           <Route path="register" element={<Registerpage />} />
           <Route path="trip-budget" element={<TripBudgetCalculator />} />
+          <Route path="review" element={<ReviewsAndRatings />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
