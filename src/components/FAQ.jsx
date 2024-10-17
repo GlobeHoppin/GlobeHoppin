@@ -19,7 +19,7 @@ function FAQ() {
       <div className="mx-auto w-full max-w-7xl px-4">
         <h2 className="text-5xl font-bold text-white mb-8 text-center">Frequently Asked Questions</h2>
         <div className="space-y-3">
-          {faqData.map((faq, index) => (
+          {faqData.slice(0, 4).map((faq, index) => ( // Only display the first 4 FAQs
             <div
               key={index}
               className="bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-700 transition-all duration-300 hover:border-gray-600"

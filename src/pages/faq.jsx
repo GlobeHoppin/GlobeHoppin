@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-import faqData from "../data/morefaq.json";
+import faqData from "../data/faqData.json";
 
 function FAQPage() {
   const [openQuestion, setOpenQuestion] = useState(null);
