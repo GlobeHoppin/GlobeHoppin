@@ -365,172 +365,186 @@ const mockHotels = {
     
 };
 function BookingPage() {
-    const [selectedLocation, setSelectedLocation] = useState("");
-    const [hotelOptions, setHotelOptions] = useState([]);
-    const [selectedHotel, setSelectedHotel] = useState(null);
-    const [checkInDate, setCheckInDate] = useState("");
-    const [checkOutDate, setCheckOutDate] = useState("");
-    const [numGuests, setNumGuests] = useState(1);
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const [bookingDetails, setBookingDetails] = useState(null);
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [hotelOptions, setHotelOptions] = useState([]);
+  const [selectedHotel, setSelectedHotel] = useState(null);
+  const [checkInDate, setCheckInDate] = useState("");
+  const [checkOutDate, setCheckOutDate] = useState("");
+  const [numGuests, setNumGuests] = useState(1);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [bookingDetails, setBookingDetails] = useState(null);
 
-    const handleLocationChange = (event) => {
-        const location = event.target.value;
-        setSelectedLocation(location);
-        setHotelOptions(mockHotels[location] || []); 
-        setCheckInDate("");
-        setCheckOutDate("");
-        setNumGuests(1);
-        
+  const handleLocationChange = (event) => {
+    const location = event.target.value;
+    setSelectedLocation(location);
+    setHotelOptions(mockHotels[location] || []);
+    setCheckInDate("");
+    setCheckOutDate("");
+    setNumGuests(1);
+  };
+
+  const handleHotelChange = (event) => {
+    const hotel = hotelOptions.find((hotel) => hotel.name === event.target.value);
+    setSelectedHotel(hotel);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (!selectedHotel || !checkInDate || !checkOutDate) {
+      alert("Please fill all the fields!");
+      return;
+    }
+
+    const bookingDetails = {
+      id: Date.now(),
+      location: selectedLocation,
+      hotel: selectedHotel.name,
+      checkIn: checkInDate,
+      checkOut: checkOutDate,
+      guests: numGuests,
     };
 
-    const handleHotelChange = (event) => {
-        const hotel = hotelOptions.find(hotel => hotel.name === event.target.value);
-        setSelectedHotel(hotel);
-    };
+    const existingBookings = JSON.parse(localStorage.getItem("bookings")) || [];
+    localStorage.setItem("bookings", JSON.stringify([...existingBookings, bookingDetails]));
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    setBookingDetails(bookingDetails);
+    setIsPopupOpen(true);
+  };
 
-        if (!selectedHotel || !checkInDate || !checkOutDate) {
-            alert("Please fill all the fields!");
-            return;
-        }
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
 
-        const bookingDetails = {
-            id: Date.now(),
-            location: selectedLocation,
-            hotel: selectedHotel.name,
-            checkIn: checkInDate,
-            checkOut: checkOutDate,
-            guests: numGuests,
-        };
+  return (
+    <div className="relative isolate px-6 pt-14 lg:px-8">
+      <PageNav />
+      <div className="mx-auto py-12 text-gray-200 sm:py-48 lg:py-12">
+        <section className="bg-white dark:bg-gray-900">
+          <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+            <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-blue-600">
+              Booking System
+            </h2>
 
-        // Save the booking in localStorage
-        const existingBookings = JSON.parse(localStorage.getItem("bookings")) || [];
-        localStorage.setItem("bookings", JSON.stringify([...existingBookings, bookingDetails]));
+            <div className="bg-pink-200 border border-gray-300 rounded-lg shadow-lg p-6"> {/* Pink background */}
+              <form className="space-y-4" onSubmit={handleSubmit}>
+                <div>
+                  <label htmlFor="location" className="block text-black text-lg font-semibold">
+                    Select Location:
+                  </label>
+                  <select
+                    id="location"
+                    value={selectedLocation}
+                    onChange={handleLocationChange}
+                    className="block w-full p-2 border border-gray-300 rounded text-black"
+                  >
+                    <option value="">--Choose a location--</option>
+                    {Object.keys(mockHotels).map((location) => (
+                      <option key={location} value={location}>
+                        {location}
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
-        setBookingDetails(bookingDetails);
-        setIsPopupOpen(true); // Open the popup
-    };
-
-    const closePopup = () => {
-        setIsPopupOpen(false);
-    };
-
-    return (
-        <div className="relative isolate px-6 pt-14 lg:px-8">
-            <PageNav />
-            <div className="mx-auto py-12 text-gray-200 sm:py-48 lg:py-12">
-                <section className="bg-white dark:bg-gray-900">
-                    <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-                        <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-">
-                            Booking System
-                        </h2>
-                        <form className="space-y-4" onSubmit={handleSubmit}>
-                            <div>
-                                <label htmlFor="location" className="block text-black">Select Location:</label>
-                                <select
-                                    id="location"
-                                    value={selectedLocation}
-                                    onChange={handleLocationChange}
-                                    className="block w-full p-2 border border-gray-300 rounded text-black"
-                                >
-                                    <option value="">--Choose a location--</option>
-                                    {Object.keys(mockHotels).map((location) => (
-                                        <option key={location} value={location}>
-                                            {location}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-
-                            {hotelOptions.length > 0 && (
-                                <div>
-                                    <label htmlFor="hotel" className="block text-black">Select Hotel:</label>
-                                    <select
-                                        id="hotel"
-                                        onChange={handleHotelChange}
-                                        className="block w-full p-2 border border-gray-300 rounded text-black"
-                                    >
-                                        {hotelOptions.map((hotel, index) => (
-                                            <option key={index} value={hotel.name}>
-                                                {hotel.name} - {hotel.address}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
-                            )}
-
-                            <div>
-                                <label htmlFor="checkin" className="block text-black">Check-In Date:</label>
-                                <input
-                                    type="date"
-                                    id="checkin"
-                                    value={checkInDate}
-                                    onChange={(e) => setCheckInDate(e.target.value)}
-                                    className="block w-full p-2 border border-gray-300 rounded text-black"
-                                    required
-                                />
-                            </div>
-
-                            <div>
-                                <label htmlFor="checkout" className="block text-black">Check-Out Date:</label>
-                                <input
-                                    type="date"
-                                    id="checkout"
-                                    value={checkOutDate}
-                                    onChange={(e) => setCheckOutDate(e.target.value)}
-                                    className="block w-full p-2 border border-gray-300 rounded text-black"
-                                    required
-                                />
-                            </div>
-
-                            <div>
-                                <label htmlFor="guests" className="block text-black">Number of Guests:</label>
-                                <input
-                                    type="number"
-                                    id="guests"
-                                    value={numGuests}
-                                    onChange={(e) => setNumGuests(Math.max(1, e.target.value))}
-                                    className="block w-full p-2 border border-gray-300 rounded text-black"
-                                    min="1"
-                                />
-                            </div>
-
-                            <div>
-                                <button
-                                    type="submit"
-                                    className="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                                >
-                                    Book Now
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </section>
-
-                {/* Popup for booking confirmation */}
-                {isPopupOpen && bookingDetails && (
-                    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                        <div className="bg-white p-6 rounded shadow-lg">
-                            <h2 className="text-xl font-bold text-black">Booking Confirmation</h2>
-                            <p className="text-black">Location: {bookingDetails.location}</p>
-                            <p className="text-black">Hotel: {bookingDetails.hotel}</p>
-                            <p className="text-black">Check-In: {bookingDetails.checkIn}</p>
-                            <p className="text-black">Check-Out: {bookingDetails.checkOut}</p>
-                            <p className="text-black">Guests: {bookingDetails.guests}</p>
-                            <div className="mt-4">
-                                <button onClick={closePopup} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                                    Close
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                {hotelOptions.length > 0 && (
+                  <div>
+                    <label htmlFor="hotel" className="block text-black text-lg font-semibold">
+                      Select Hotel:
+                    </label>
+                    <select
+                      id="hotel"
+                      onChange={handleHotelChange}
+                      className="block w-full p-2 border border-gray-300 rounded text-black"
+                    >
+                      {hotelOptions.map((hotel, index) => (
+                        <option key={index} value={hotel.name}>
+                          {hotel.name} - {hotel.address}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 )}
+
+                <div>
+                  <label htmlFor="checkin" className="block text-black text-lg font-semibold">
+                    Check-In Date:
+                  </label>
+                  <input
+                    type="date"
+                    id="checkin"
+                    value={checkInDate}
+                    onChange={(e) => setCheckInDate(e.target.value)}
+                    className="block w-full p-2 border border-gray-300 rounded text-black"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="checkout" className="block text-black text-lg font-semibold">
+                    Check-Out Date:
+                  </label>
+                  <input
+                    type="date"
+                    id="checkout"
+                    value={checkOutDate}
+                    onChange={(e) => setCheckOutDate(e.target.value)}
+                    className="block w-full p-2 border border-gray-300 rounded text-black"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="guests" className="block text-black text-lg font-semibold">
+                    Number of Guests:
+                  </label>
+                  <input
+                    type="number"
+                    id="guests"
+                    value={numGuests}
+                    onChange={(e) => setNumGuests(Math.max(1, e.target.value))}
+                    className="block w-full p-2 border border-gray-300 rounded text-black"
+                    min="1"
+                  />
+                </div>
+
+                <div>
+                  <button
+                    type="submit"
+                    className="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  >
+                    Book Now
+                  </button>
+                </div>
+              </form>
             </div>
-        </div>
-    );
+          </div>
+        </section>
+
+        {/* Popup for booking confirmation */}
+        {isPopupOpen && bookingDetails && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-pink-200 border border-gray-300 rounded-lg shadow-lg p-6"> {/* Pink background */}
+              <h2 className="text-xl font-bold text-black">Booking Confirmation</h2>
+              <p className="text-black">Location: {bookingDetails.location}</p>
+              <p className="text-black">Hotel: {bookingDetails.hotel}</p>
+              <p className="text-black">Check-In: {bookingDetails.checkIn}</p>
+              <p className="text-black">Check-Out: {bookingDetails.checkOut}</p>
+              <p className="text-black">Guests: {bookingDetails.guests}</p>
+              <div className="mt-4">
+                <button
+                  onClick={closePopup}
+                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
 
 export default BookingPage;
