@@ -19,6 +19,7 @@ const navigation = [
   { name: "About", href: "/about", current: false },
   { name: "Mark Your Journey", href: "/app", current: false },
   { name: "Contact", href: "/contact", current: false },
+  { name: "Trip Budget Calculator", href: "/trip-budget", current: false },
 ];
 
 function classNames(...classes) {
