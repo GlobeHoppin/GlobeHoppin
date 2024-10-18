@@ -1,19 +1,66 @@
 [
-    {
-      "question": "What is GlobeHoppin?",
-      "answer": "GlobeHoppin is a cutting-edge platform designed for travel enthusiasts. It offers a comprehensive suite of tools for discovering unique travel resources, connecting with fellow adventurers, and planning unforgettable journeys across the globe."
+  {
+    "question": "What is GlobeHoppin?",
+    "answer": "GlobeHoppin is a cutting-edge platform designed for travel enthusiasts. It offers a comprehensive suite of tools for discovering unique travel resources, connecting with fellow adventurers, and planning unforgettable journeys across the globe."
+  },
+  {
+    "question": "How can I contact support?",
+    "answer": "Our dedicated support team is always ready to assist you. You can reach us through our Contact page, where you'll find options for email support, live chat, and phone assistance. We aim to respond to all inquiries within 24 hours."
+  },
+  {
+    "question": "Where can I find the terms and conditions?",
+    "answer": "Our terms and conditions are easily accessible in the footer section of our website. We encourage all users to review these documents carefully to understand our policies, user agreements, and privacy practices."
+  },
+  {
+    "question": "Is my personal information secure?",
+    "answer": "At GlobeHoppin, we take data security seriously. We employ industry-standard encryption and security measures to protect your personal information. For more details, please refer to our Privacy Policy."
+  },
+  {
+    "question": "Can I book flights through GlobeHoppin?",
+    "answer": "GlobeHoppin partners with multiple travel agencies and airlines to offer users flight booking options directly through our platform. Simply search for your preferred destination, and we'll help you find the best deals."
+  },
+  {
+    "question": "Does GlobeHoppin offer trip recommendations?",
+    "answer": "Yes, GlobeHoppin provides personalized travel recommendations based on your interests, previous trips, and current travel trends. Whether you're looking for a beach getaway or a mountain adventure, we've got you covered."
+  },
+  {
+    "question": "How do I create an account on GlobeHoppin?",
+    "answer": "Creating an account is easy. Click the 'Sign Up' button at the top right corner of the homepage and follow the instructions to complete the registration process. Once you've signed up, you'll be able to access all the features of GlobeHoppin."
+  },
+  {
+    "question": "Can I cancel or modify my booking?",
+    "answer": "Yes, bookings made through GlobeHoppin can be modified or canceled based on the policies of the respective service provider. You can view your bookings and make changes through the 'My Trips' section of your account."
+  },
+  {
+    "question": "Are there any fees for using GlobeHoppin?",
+    "answer": "GlobeHoppin is free to use. However, certain services or bookings may incur fees from third-party providers, such as airlines or hotels. We strive to provide transparency in pricing and inform you of any additional charges during the booking process."
+  },
+  {
+    "question": "How can I join the GlobeHoppin community?",
+    "answer": "To join the GlobeHoppin community, simply create an account and start engaging with fellow travelers. You can share travel tips, participate in forums, and even join group trips with like-minded adventurers."
+  },
+  {
+      "question": "Does GlobeHoppin offer travel insurance?",
+      "answer": "Yes, GlobeHoppin partners with top travel insurance providers to offer you a variety of coverage options. You can choose a plan that suits your needs while booking your trip through our platform."
     },
     {
-      "question": "How can I contact support?",
-      "answer": "Our dedicated support team is always ready to assist you. You can reach us through our Contact page, where you'll find options for email support, live chat, and phone assistance. We aim to respond to all inquiries within 24 hours."
+      "question": "Can I save my favorite destinations?",
+      "answer": "Absolutely! You can create a personalized list of your favorite destinations by using the 'Save' feature on any location page. This allows you to easily revisit places you're interested in exploring."
     },
     {
-      "question": "Where can I find the terms and conditions?",
-      "answer": "Our terms and conditions are easily accessible in the footer section of our website. We encourage all users to review these documents carefully to understand our policies, user agreements, and privacy practices."
+      "question": "Does GlobeHoppin offer group travel options?",
+      "answer": "Yes, GlobeHoppin offers group travel packages for friends, families, and organized trips. You can browse our group travel section to find the perfect itinerary or customize one to fit your group's needs."
     },
     {
-      "question": "Is my personal information secure?",
-      "answer": "At GlobeHoppin, we take data security seriously. We employ industry-standard encryption and security measures to protect your personal information. For more details, please refer to our Privacy Policy."
+      "question": "What languages is GlobeHoppin available in?",
+      "answer": "Currently, GlobeHoppin supports English, Spanish, French, and German. We are working on expanding language options to cater to our growing global community."
+    },
+    {
+      "question": "Can I share my travel experiences on GlobeHoppin?",
+      "answer": "Yes, GlobeHoppin allows users to share their travel experiences through our community blog section. You can post stories, upload photos, and offer advice to fellow travelers."
+    },
+    {
+      "question": "Is there a mobile app for GlobeHoppin?",
+      "answer": "Yes, GlobeHoppin has a mobile app available for both iOS and Android. The app provides all the features of the website, making it easy to plan and manage your trips on the go."
     }
-  ]
-  
+]
