@@ -6,8 +6,10 @@ import Applayout from "./pages/Applayout";
 import Contactpage from "./pages/Contactpage";
 import Loginpage from "./pages/Loginpage";
 import Registerpage from "./pages/Registerpage";
+
 import FAQPage from "./pages/faq"; // Import the FAQPage component
 import "./App.css";
+
 
 const App = () => {
   return (
@@ -21,7 +23,9 @@ const App = () => {
           <Route path="signin" element={<Loginpage />} />
           <Route path="register" element={<Registerpage />} />
 
+
           <Route path="faq" element={<FAQPage />} /> {/* Add the FAQPage route */}
+
 
           <Route path="*" element={<PageNotFound />} />
         </Routes>
