@@ -131,11 +131,14 @@ function PageNav() {
                 <>
                   <Menu as="div" className="relative ml-3">
                     <div>
-                      <MenuButton className="relative flex font-bold text-gray-200 text-md focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+
+                    {/* Made changes here, hover:bg-indigo-600 rounded p-2 transition-all, Made join hover better*/}
+
+                      <MenuButton className="relative flex font-bold text-gray-200 text-md focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 hover:bg-indigo-600 rounded p-2 transition-all">
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
-                        Join{" "}
-                        <ArrowRightEndOnRectangleIcon className="h-6 w-6 text-gray-200" />
+                        Join
+                        <ArrowRightEndOnRectangleIcon className="h-6 w-6  text-gray-200" />
                       </MenuButton>
                       <MenuItems
                         transition
