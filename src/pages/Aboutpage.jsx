@@ -29,7 +29,11 @@ function Aboutpage() {
 
   return (
     <>
-      <div className="relative isolate px-6 pt-14 lg:px-8">
+      <div className="relative isolate">    
+  {/* Padding on all sides was preventing the element from taking the full screen size.
+  Removing or adjusting it will allow full-width and height display. */}
+
+
         <PageNav />
         <div
           className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 items-center py-12 sm:py-24 text-gray-200 lg:py-12"
