@@ -34,6 +34,9 @@ const App = () => {
           <Route path="signin" element={<Loginpage />} />
           <Route path="register" element={<Registerpage />} />
           <Route path="trip-budget" element={<TripBudgetCalculator />} />
+          {/* Add these routes if you need them */}
+          <Route path="terms-of-use" element={<TermsOfUse />} />
+          <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
