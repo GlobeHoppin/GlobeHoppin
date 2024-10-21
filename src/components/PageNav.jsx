@@ -38,7 +38,27 @@ function PageNav() {
   const isSignedIn = false; // Placeholder for sign-in status
   return (
     <>
+
       <Disclosure as="nav" className="bg-slate-950 absolute inset-x-0 top-0 z-50">
+
+      {/* <nav>
+        <ul>
+          <li>
+            <NavLink to="/">Home</NavLink>
+          </li>
+          <li>
+            <NavLink to="/about">About</NavLink>
+          </li>
+          <li>
+            <NavLink to="/contact">Contact</NavLink>
+          </li>
+        </ul>
+      </nav> */}
+      <Disclosure
+        as="nav"
+        className="bg-slate-950 fixed inset-x-0 top-0 z-50"
+      >
+
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-between">
             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
