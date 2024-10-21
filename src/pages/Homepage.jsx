@@ -8,6 +8,7 @@ import {
   ShareIcon,
 } from "@heroicons/react/24/outline";
 import FAQ from "../components/FAQ";
+import Chatbot from "../components/Chatbot"; // Import Chatbot
 
 function Homepage() {
   const features = [
@@ -117,46 +118,50 @@ function Homepage() {
 
         {/* Features Section */}
         <div className="bg-gray-900 py-16">
-          <h2 className="text-3xl font-bold text-center text-white mb-10">
-            Features
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl text-center mb-6">
+            Core Features
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto px-4">
-            {features.map((feature) => (
-              <div
-                key={feature.name}
-                className="bg-gray-800 rounded-lg p-6 flex flex-col items-center text-center"
-              >
-                <feature.icon className="h-16 w-16 text-indigo-500 mb-4" />
-                <h3 className="text-xl font-semibold text-white mb-2">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4">
+            {features.map((feature, index) => (
+              <div key={index} className="flex flex-col items-center">
+                <feature.icon
+                  className="h-10 w-10 text-indigo-500 mb-4"
+                  aria-hidden="true"
+                />
+                <h3 className="text-xl font-semibold text-white">
                   {feature.name}
                 </h3>
-                <p className="text-gray-400">{feature.description}</p>
+                <p className="text-gray-300 mt-2 text-center">
+                  {feature.description}
+                </p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Image Gallery Section */}
-        <div className="py-16">
-          <h2 className="text-3xl font-bold text-center text-white mb-10">
-            Gallery
+        {/* Gallery Section */}
+        <div className="bg-gray-100 py-16">
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center mb-6">
+            Photo Gallery
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">
+          <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-8 px-4">
             {data.map((item, index) => (
-              <div key={index} className="overflow-hidden rounded-lg shadow-lg">
+              <div key={index}>
                 <img
                   src={item.imageLink}
-                  alt={`Gallery image ${index + 1}`}
-                  className="w-full h-56 object-cover"
+                  alt={`Image ${index + 1}`}
+                  className="rounded-lg shadow-md w-full h-64 object-cover"
                 />
               </div>
             ))}
           </div>
         </div>
-        <section id="faq">
-          {/* FAQ Section */}
-          <FAQ /> {/* This will render the FAQ section */}
-        </section>
+
+        {/* FAQ Section */}
+        <FAQ />
+
+        {/* Add the chatbot component here */}
+        <Chatbot />
 
         <Footer />
       </div>
