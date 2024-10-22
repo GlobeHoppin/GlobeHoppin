@@ -96,16 +96,22 @@ function Homepage() {
                 Discover hidden gems, share experiences, and capture your
                 journeys with our app.
               </p>
-              <div className="flex justify-center gap-x-6">
+
+              {/* Changes Made below added: [py-3 grid gap-3], modified To: [md:flex md:justify-center md:gap-x-6 md:w-full] */}
+
+              <div className="py-3 grid gap-3 md:flex md:justify-center md:gap-x-6 md:w-full">
                 <NavLink
                   to="/login"
-                  className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="rounded-md bg-indigo-600 px-4 py-2 text-lg font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Login
                 </NavLink>
+
+                {/* Changes Made here text-gray-900 to  text-white, adjusted padding and text-sm to text-lg(to make visible better) */}
+
                 <NavLink
                   to="/register"
-                  className="rounded-md px-3.5 py-2.5 text-sm font-semibold text-gray-900 border border-gray-900 hover:border-gray-500"
+                  className="rounded-md px-4 py-2 text-lg font-semibold text-white border border-white-900 hover:border-blue-500"
                 >
                   Register
                 </NavLink>
