@@ -28,6 +28,7 @@ const navigation = [
 
   { name: "Trip Budget Calculator", href: "/trip-budget", current: false },
 </main>
+  { name: "Review", href: "/review", current: false },
 ];
 
 function classNames(...classes) {
