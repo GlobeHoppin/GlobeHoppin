@@ -64,7 +64,7 @@ function Contactpage() {
         </div>
       </div>
       <Footer />
-    </>
+
   );
 }
 
