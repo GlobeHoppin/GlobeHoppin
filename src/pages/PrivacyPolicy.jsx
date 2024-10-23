@@ -1,132 +1,61 @@
+import Footer from "../components/Footer";
 import PageNav from "../components/PageNav";
-import { Box, Typography, Paper } from "@mui/material";
-import { styled } from "@mui/system";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-// Styled components for the privacy policy page
-const PolicyContainer = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(4),
-  maxWidth: "800px",
-  margin: "auto",
-  backdropFilter: "blur(10px)",
-  backgroundColor: "rgba(47, 47, 47, 0.5)", // Similar to FAQ component
-  borderRadius: theme.shape.borderRadius,
-  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-  "&:hover": {
-    transform: "translateY(-5px)",
-    boxShadow: "0 20px 40px rgba(0, 0, 0, 0.6)",
-  },
-}));
-
-const theme = createTheme({
-  palette: {
-    mode: "dark",
-    background: {
-      default: "#121212",
-    },
-    primary: {
-      main: "#ff6f61",
-    },
-    secondary: {
-      main: "#ff3d00",
-    },
-  },
-  typography: {
-    h4: {
-      fontFamily: "Future2, Arial, sans-serif",
-      fontWeight: "bold", // Bold like FAQ titles
-      fontSize: "2rem", // Similar size as in FAQ
-    },
-    h6: {
-      fontFamily: "Future2, Arial, sans-serif",
-      color: "#ffffff", // White color like FAQ
-      fontWeight: "bold",
-      fontSize: "1.25rem", // Smaller size for subtitles
-    },
-    body1: {
-      fontFamily: "Arial, sans-serif",
-      color: "#b0b0b0", // Gray color like the FAQ answers
-      fontSize: "1rem",
-      lineHeight: "1.6", // Similar relaxed line height
-    },
-  },
-});
-
-// Background container for the privacy policy page
-const BackgroundContainer = styled(Box)(() => ({
-  minHeight: "100vh",
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  padding: "20px",
-}));
 
 const PrivacyPolicy = () => {
   return (
-    <div className="relative isolate px-6 pt-14 lg:px-8">
+    <div className="flex flex-col items-center justify-evenly min-h-screen">
       <PageNav />
-      <ThemeProvider theme={theme}>
-        <BackgroundContainer>
-          <PolicyContainer>
-            <Typography
-              variant="h4"
-              align="center"
-              color="white"
-              gutterBottom
-              fontFamily={"Future2, Helvetica, Arial"}
-            >
-              Privacy Policy
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              Welcome to our Privacy Policy page. Your privacy is critically important to us.
-            </Typography>
-
-            <Typography variant="h6" gutterBottom>
-              1. Information We Collect
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              We collect several types of information for various purposes to provide and improve our service to you.
-            </Typography>
-
-            <Typography variant="h6" gutterBottom>
-              2. How We Use Your Information
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              We use the data we collect to operate, maintain, and improve our services. This includes using your data to understand how users interact with our services and to communicate updates.
-            </Typography>
-
-            <Typography variant="h6" gutterBottom>
-              3. Cookies
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              We use cookies and similar tracking technologies to track the activity on our website and hold certain information.
-            </Typography>
-
-            <Typography variant="h6" gutterBottom>
-              4. Data Protection Rights
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              You have the right to access, update, or delete your personal information. If you make a request, we have one month to respond to you.
-            </Typography>
-
-            <Typography variant="h6" gutterBottom>
-              5. Changes to This Privacy Policy
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              We may update our Privacy Policy from time to time. You are advised to review this page periodically for any changes.
-            </Typography>
-
-            <Typography variant="h6" gutterBottom>
-              6. Contact Us
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              If you have any questions about this Privacy Policy, please contact us.
-            </Typography>
-          </PolicyContainer>
-        </BackgroundContainer>
-      </ThemeProvider>
+      <div className="p-8 max-w-800 bg-gray-700">
+        <div className="flex flex-col items-start justify-center">
+          <h4 className="text-5xl font-bold text-white mb-8 self-center">Privacy Policy</h4>
+          <p className="text-gray-400 text-base leading-relaxed mb-3">
+            Welcome to our Privacy Policy page. Your privacy is critically
+            important to us.
+          </p>
+          <h6 className="font-medium text-white text-lg">
+            1. Information We Collect
+          </h6>
+          <p className="text-gray-400 text-base leading-relaxed mb-3">
+            We collect several types of information for various purposes to
+            provide and improve our service to you.
+          </p>
+          <h6 className="font-medium text-white text-lg">
+            2. How We Use Your Information
+          </h6>
+          <p className="text-gray-400 text-base leading-relaxed mb-3">
+            We use the data we collect to operate, maintain, and improve our
+            services. This includes using your data to understand how users
+            interact with our services and to communicate updates.
+          </p>
+          <h6 className="font-medium text-white text-lg">3. Cookies</h6>
+          <p className="text-gray-400 text-base leading-relaxed mb-3">
+            We use cookies and similar tracking technologies to track the
+            activity on our website and hold certain information.
+          </p>
+          <h6 className="font-medium text-white text-lg">
+            4. Data Protection Rights
+          </h6>
+          <p className="text-gray-400 text-base leading-relaxed mb-3">
+            You have the right to access, update, or delete your personal
+            information. If you make a request, we have one month to respond to
+            you.
+          </p>
+          <h6 className="font-medium text-white text-lg">
+            5. Changes to This Privacy Policy
+          </h6>
+          <p className="text-gray-400 text-base leading-relaxed mb-3">
+            We may update our Privacy Policy from time to time. You are advised
+            to review this page periodically for any changes.
+          </p>
+          <h6 className="font-medium text-white text-lg">6. Contact Us</h6>
+          <p className="text-gray-400 text-base leading-relaxed">
+            If you have any questions about this Privacy Policy, please contact
+            us.
+          </p>
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 };
