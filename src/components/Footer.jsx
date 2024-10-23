@@ -59,7 +59,7 @@ function Footer() {
                     </a>
                   </li>
                   <li>
-                  <NavLink to="/Terms" className="hover:underline">
+                  <NavLink to="/TermsOfUse" className="hover:underline">
                       Terms of Use
                     </NavLink>
                   </li>
