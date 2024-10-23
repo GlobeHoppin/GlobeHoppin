@@ -8,23 +8,22 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import {
+  ArrowRightEndOnRectangleIcon,
   Bars3Icon,
   XMarkIcon,
-  ArrowRightEndOnRectangleIcon,
 } from "@heroicons/react/24/outline";
-import logo from "/logo.png";
 import { NavLink } from "react-router-dom";
+import logo from "/logo.png";
 
 const navigation = [
   { name: "About", href: "/about", current: false },
   { name: "Mark Your Journey", href: "/app", current: false },
   { name: "Contact", href: "/contact", current: false },
   { name: "BookingPage", href: "/BookingPage", current: false },
-  
   { name: "YourBookings", href: "/YourBookings", current: false },
   { name: "Guide", href: "/Famous", current: false },
-  
   { name: "Trip Budget Calculator", href: "/trip-budget", current: false },
+  { name: "Review", href: "/review", current: false },
 ];
 
 function classNames(...classes) {
@@ -34,7 +33,6 @@ function classNames(...classes) {
 function PageNav() {
   const isSignedIn = false; // Placeholder for sign-in status
   return (
-
       <Disclosure
         as="nav"
         className="bg-slate-950 fixed inset-x-0 top-0 z-50"
@@ -119,14 +117,12 @@ function PageNav() {
                 <>
                   <Menu as="div" className="relative ml-3">
                     <div>
-
-                    {/* Made changes here, hover:bg-indigo-600 rounded p-2 transition-all, Made join hover better*/}
-
+                      {/* Made changes here, hover:bg-indigo-600 rounded p-2 transition-all, Made join hover better */}
                       <MenuButton className="relative flex font-bold text-gray-200 text-md focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 hover:bg-indigo-600 rounded p-2 transition-all">
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
                         Join
-                        <ArrowRightEndOnRectangleIcon className="h-6 w-6  text-gray-200" />
+                        <ArrowRightEndOnRectangleIcon className="h-6 w-6 text-gray-200" />
                       </MenuButton>
                       <MenuItems
                         transition

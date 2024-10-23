@@ -20,6 +20,8 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import FAQPage from "./pages/faq"; // Import the FAQPage component
 
 
+import TripBudgetCalculator from "./pages/TripBudgetCalculatorPage";
+import ReviewsAndRatings from "./pages/Review";
 
 const App = () => {
   return (
@@ -28,15 +30,19 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="app" element={<Applayout />} />
-          <Route path="contact" element={<Contactpage />} /> 
+          <Route path="contact" element={<Contactpage />} />
+          
           <Route path="BookingPage" element={<BookingPage />} />
           <Route path="Famous" element={<Famous />} />
-
-          <Route path="YourBookings" element={<YourBookings />} />
           
+          <Route path="YourBookings" element={<YourBookings />} />
           <Route path="about" element={<Aboutpage />} />
           <Route path="signin" element={<Loginpage />} />
           <Route path="register" element={<Registerpage />} />
+          <Route path="faq" element={<FAQPage />} />{" "}
+          {/* Add the FAQPage route */}
+          <Route path="trip-budget" element={<TripBudgetCalculator />} />
+          <Route path="review" element={<ReviewsAndRatings />} />
           <Route path="faq" element={<FAQPage />} /> {/* Add the FAQPage route */}
           <Route path="PrivacyPolicy" element={<PrivacyPolicy />} />
           <Route path="TermsOfUse" element={<TermsOfUse />} />
