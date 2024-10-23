@@ -14,10 +14,10 @@ jobs:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         issue-message: "👋 Hey there, rockstar! Thanks for dropping an issue! The GlobeHoppin team is on it like pineapple on pizza (love it or hate it). Stick around, magic's about to happen!"
         pr-message: "🎉 Boom! Your pull request just flew into the GlobeHoppin HQ. High fives all around! Our team of tech wizards will check it out and get back to you faster than you can say 'code ninja!' Thanks for leveling up the project!"
-        
-    - name: Auto-Assign Issue
+      
+    - name: Actions Ecosystem Action Add Assignees
       if: github.event_name == 'issues'
-      uses: actions-ecosystem/action-assign@v1
+      uses: actions-ecosystem/action-add-assignees@v1.0.0
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         assignees: ${{ github.actor }}

@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import './App.css'; // Optional: for custom styling
 
 // Mock data for states in India
