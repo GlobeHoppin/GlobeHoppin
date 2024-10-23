@@ -3,8 +3,8 @@ import Aboutpage from "./pages/Aboutpage";
 import Homepage from "./pages/Homepage";
 import PageNotFound from "./pages/PageNotFound";
 
-import TermsOfUse from "./pages/TermsOfUse";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
+// import TermsOfUse from "./pages/TermsOfUse";
+// import PrivacyPolicy from "./pages/PrivacyPolicy";
 import "./App.css";
 
 import Applayout from "./pages/Applayout";
