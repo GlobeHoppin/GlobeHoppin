@@ -9,6 +9,10 @@ import {
 } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 import logo from "/logo.png";
+import { useSelector } from "react-redux"
+import {logout} from "../services/operations/authAPI"
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const navigation = [
   { name: "About", href: "/about", current: false },
@@ -26,7 +30,10 @@ function classNames(...classes) {
 }
 
 function PageNav() {
-  const isSignedIn = false; // Placeholder for sign-in status
+  const { user } = useSelector((state) => state.profile);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // const isSignedIn = false; // Placeholder for sign-in status
   return (
     <div>
       <Disclosure as="nav" className="bg-slate-950 fixed inset-x-0 top-0 z-50">
@@ -68,7 +75,7 @@ function PageNav() {
               </div>
             </div>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-              {isSignedIn ? (
+              {user ? (
                 <>
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">
@@ -98,7 +105,7 @@ function PageNav() {
                       <Menu.Item>
                         <NavLink
                           to=""
-                          className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
+                          className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100" onClick={() => dispatch(logout(navigate))}
                         >
                           Sign out
                         </NavLink>

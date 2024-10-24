@@ -2,8 +2,34 @@ import PageNav from "../components/PageNav";
 import { NavLink } from "react-router-dom";
 import signupimg from "/signupimg.png";
 import Footer from "../components/Footer";
+import { useState } from "react"
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { signUp } from "../services/operations/authAPI"
+import toast from "react-hot-toast"
 
 function Registerpage() {
+  const navigate = useNavigate();
+	const dispatch = useDispatch();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [cpassword, setCpassword] = useState("");
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+		if (password !== cpassword) {
+			toast.error("Passwords Do Not Match");
+			return;
+		}
+
+		// Send data to backend for create account
+		dispatch(
+			signUp(name, email, password, navigate)
+		);
+  }
+
   return (
     <>
       <div className="relative isolate px-6 pt-14 lg:px-8">
@@ -40,7 +66,22 @@ function Registerpage() {
                       <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         Create an account
                       </h1>
-                      <form className="space-y-4 md:space-y-6" action="#">
+                      <form className="space-y-4 md:space-y-6" onSubmit={submitHandler}>
+                        <div>
+                          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Your Name
+                          </label>
+                          <input
+                            type="text"
+                            name="name"
+                            id="name"
+                            value={name}
+                            onChange={(e)=>setName(e.target.value)}
+                            className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Enter your name"
+                            required=""
+                          />
+                        </div>
                         <div>
                           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Your email
@@ -49,6 +90,8 @@ function Registerpage() {
                             type="email"
                             name="email"
                             id="email"
+                            value={email}
+                            onChange={(e)=>setEmail(e.target.value)}
                             className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="name@email.com"
                             required=""
@@ -63,6 +106,8 @@ function Registerpage() {
                             name="password"
                             id="password"
                             placeholder="••••••••"
+                            value={password}
+                            onChange={(e)=>setPassword(e.target.value)}
                             className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required=""
                           />
@@ -72,9 +117,11 @@ function Registerpage() {
                             Confirm password
                           </label>
                           <input
-                            type="confirm-password"
+                            type="password"
                             name="confirm-password"
                             id="confirm-password"
+                            value={cpassword}
+                            onChange={(e)=>setCpassword(e.target.value)}
                             placeholder="••••••••"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required=""
