@@ -4,7 +4,7 @@ import Homepage from "./pages/Homepage";
 import PageNotFound from "./pages/PageNotFound";
 
 // import TermsOfUse from "./pages/TermsOfUse";
-// import PrivacyPolicy from "./pages/PrivacyPolicy";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import "./App.css";
 
 import Applayout from "./pages/Applayout";
@@ -37,6 +37,7 @@ const App = () => {
           <Route path="about" element={<Aboutpage />} />
           <Route path="signin" element={<Loginpage />} />
           <Route path="register" element={<Registerpage />} />
+          <Route path="PrivacyPolicy" element={<PrivacyPolicy />} />
           <Route path="faq" element={<FAQPage />} />{" "}
           {/* Add the FAQPage route */}
           <Route path="trip-budget" element={<TripBudgetCalculator />} />
