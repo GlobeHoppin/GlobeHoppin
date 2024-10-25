@@ -13,6 +13,7 @@ import logo from "/logo.png";
 const navigation = [
   { name: "About", href: "/about", current: false },
   { name: "Mark Your Journey", href: "/app", current: false },
+  { name: "MapComponent", href: "/MapComponent", current: false },
   { name: "Contact", href: "/contact", current: false },
   { name: "BookingPage", href: "/BookingPage", current: false },
   { name: "YourBookings", href: "/YourBookings", current: false },
