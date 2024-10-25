@@ -1,8 +1,64 @@
+import { useState } from "react";
 import PageNav from "../components/PageNav";
+
+import { EMAIL_NOTIFICATION_ENDPOINT } from "../ApiEndpoints";
+
 import Footer from "../components/Footer";
 
+
 function Contactpage() {
+  const [formData, setFormData] = useState({
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const [statusMessage, setStatusMessage] = useState("");
+
+  // Handle form input change
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  // Function to submit form data to the API
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Create payload to send to the backend
+    const payload = {
+      subject: formData.subject,
+      email: formData.email,
+      message: formData.message,
+    };
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_BASE_URL}${EMAIL_NOTIFICATION_ENDPOINT}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      if (response.ok) {
+        setStatusMessage("Message sent successfully!");
+      } else {
+        setStatusMessage("Failed to send the message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error sending request:", error);
+      setStatusMessage("There was an error sending your message.");
+    }
+  };
+
   return (
+
     <>
       <div className="relative isolate px-6 pt-14 lg:px-8">
         <PageNav />
