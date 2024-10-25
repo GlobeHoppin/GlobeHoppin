@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import logo from "/logo.png";
 import { BsDiscord, BsDribbble, BsGithub, BsTwitterX } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa";
+import GoogleTranslate from "../pages/GoogleTranslate";
 function Footer() {
   return (
     <>
@@ -59,7 +60,7 @@ function Footer() {
                     </a>
                   </li>
                   <li>
-                  <NavLink to="/Terms" className="hover:underline">
+                    <NavLink to="/Terms" className="hover:underline">
                       Terms of Use
                     </NavLink>
                   </li>
@@ -77,6 +78,9 @@ function Footer() {
               . All Rights Reserved.
             </span>
             <div className="flex mt-4 sm:justify-center sm:mt-0">
+              <div className="translate flex ml-4 my-auto">
+                <GoogleTranslate />
+              </div>
               <a href="#">
                 <FaFacebookF
                   className="text-gray-500 hover:text-white ml-4 cursor-pointer hover:scale-125 duration-200"
