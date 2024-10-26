@@ -2,8 +2,50 @@ import PageNav from "../components/PageNav";
 import { NavLink } from "react-router-dom";
 import signupimg from "/signupimg.png";
 import Footer from "../components/Footer";
+import {apiConnector} from "../services/apiConnector";
+import { toast } from "react-hot-toast";
+import { SIGNUP_API } from "../ApiEndpoints";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Registerpage() {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [pass, setPass] = useState("");
+  const [cPass, setCPass] = useState("");
+  const navigate = useNavigate();
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    console.log("BACKEND_CALL SIGNUP...");
+    const toastId = toast.loading("Loading...");
+    
+		try {
+			const response = await apiConnector("POST", SIGNUP_API, {
+        email,
+        name, 
+        password: pass,
+        gender: "Male",
+        country: "India",
+        phoneNumber: "9876543210",
+        countryCode: "+91"
+			});
+
+			console.log("SIGNUP API RESPONSE............", response);
+
+			if (response.error) {
+				throw new Error(response.error.message);
+			}
+			toast.success("Signup Successful");
+			navigate("/signin");
+		} catch (error) {
+			console.log("SIGNUP API ERROR............", error);
+			toast.error("Signup Failed");
+			navigate("/register");
+		}
+		// dispatch(setLoading(false));
+		toast.dismiss(toastId);
+  }
   return (
     <>
       <div className="relative isolate px-6 pt-14 lg:px-8">
@@ -40,7 +82,22 @@ function Registerpage() {
                       <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         Create an account
                       </h1>
-                      <form className="space-y-4 md:space-y-6" action="#">
+                      <form className="space-y-4 md:space-y-6" onSubmit={submitHandler}>
+                        <div>
+                          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Your Name
+                          </label>
+                          <input
+                            type="text"
+                            name="name"
+                            id="name"
+                            value={name}
+                            onChange={(e)=>setName(e.target.value)}
+                            className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Enter name.."
+                            required=""
+                          />
+                        </div>
                         <div>
                           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Your email
@@ -49,6 +106,8 @@ function Registerpage() {
                             type="email"
                             name="email"
                             id="email"
+                            value={email}
+                            onChange={(e)=>setEmail(e.target.value)}
                             className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="name@email.com"
                             required=""
@@ -62,6 +121,8 @@ function Registerpage() {
                             type="password"
                             name="password"
                             id="password"
+                            onChange={(e) => setPass(e.target.value)}
+                            value={pass}
                             placeholder="••••••••"
                             className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required=""
@@ -75,6 +136,8 @@ function Registerpage() {
                             type="confirm-password"
                             name="confirm-password"
                             id="confirm-password"
+                            value={cPass}
+                            onChange={(e)=>setCPass(e.target.value)}
                             placeholder="••••••••"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required=""
