@@ -3,7 +3,36 @@ import logo from "/logo.png";
 import { BsDiscord, BsDribbble, BsGithub, BsTwitterX } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa";
 import GoogleTranslate from "../pages/GoogleTranslate";
+
+import { useEffect } from "react"; // Import useEffect
+
 function Footer() {
+  useEffect(() => {
+    // Set up the GTranslate settings
+    window.gtranslateSettings = {
+      default_language: "en",
+      detect_browser_language: true,
+      wrapper_selector: ".gtranslate_wrapper",
+    };
+
+    // Load the GTranslate script only if it hasn't been loaded yet
+    if (!document.getElementById("gtranslate-script")) {
+      const script = document.createElement("script");
+      script.src = "https://cdn.gtranslate.net/widgets/latest/popup.js";
+      script.defer = true;
+      script.id = "gtranslate-script"; // Add an ID to prevent duplicates
+      document.body.appendChild(script);
+    }
+
+    // Cleanup function to remove the script when the component unmounts
+    return () => {
+      const script = document.getElementById("gtranslate-script");
+      if (script) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
+
   return (
     <>
       <footer className="bg-white dark:bg-gray-900 mx-auto w-full max-w-screen-xl">
@@ -63,6 +92,15 @@ function Footer() {
                     <NavLink to="/Terms" className="hover:underline">
                       Terms of Use
                     </NavLink>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                
+                <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                  <li className="mb-4">
+                    <div className="gtranslate_wrapper"></div>
+                    {/* Ensure this is the only instance of the language selector */}
                   </li>
                 </ul>
               </div>
