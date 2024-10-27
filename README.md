@@ -23,7 +23,7 @@ To foster a positive and collaborative environment in the **GlobeHoppin** projec
       <th>Status</th>       
    </tr>
     <tr>
-      <td><img src="festhack.jpg" width="200" height="auto" loading="lazy" alt="Hacktoberfest 2024"/></td>
+      <td><img src="https://github.com/user-attachments/assets/b08d533b-34b1-4602-871f-bc522c236f04" width="200" height="auto" loading="lazy" alt="Hacktoberfest 2024"/></td>
       <td>Hacktoberfest 2024</td>
       <td>Hacktoberfest is a month-long celebration of open source software run by DigitalOcean, GitHub, and Twilio. It encourages contributions to open source projects and promotes a global community of developers.</td>
         <td>Active</td>
