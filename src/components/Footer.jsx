@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
 import logo from "/logo.png";
+import { FaXTwitter } from "react-icons/fa6";
+
 import { BsDiscord, BsDribbble, BsGithub, BsTwitterX } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa";
 import { useEffect } from "react"; // Import useEffect
@@ -126,11 +128,14 @@ function Footer() {
                   title="discord"
                 />
               </a>
-              <a href="#">
-                <BsTwitterX
-                  className="text-gray-500 ml-4 cursor-pointer hover:text-white hover:scale-125 duration-200"
-                  title="twitter"
-                />
+
+              <a
+                href="#"
+                className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+              >
+                <FaXTwitter /> 
+                <span className="sr-only">Twitter page</span>
+
               </a>
               <a href="#">
                 <BsGithub
