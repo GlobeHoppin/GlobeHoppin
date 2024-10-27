@@ -1,6 +1,8 @@
 import PageNav from "../components/PageNav";
 import { NavLink } from "react-router-dom";
 import signupimg from "/signupimg.png";
+import Footer from "../components/Footer";
+
 function Registerpage() {
   return (
     <div className="relative isolate px-6 pt-14 lg:px-8">
@@ -11,10 +13,7 @@ function Registerpage() {
             <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-40">
               <div className="text-center">
                 <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-                  Signup In Our{" "}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
-                    World
-                  </span>
+                  Signup In Our World
                 </h1>
                 <p className="text-gray-100 sm:text-2xl mt-2">
                   GlobeHoppin keeps track of your adventures.
@@ -90,18 +89,28 @@ function Registerpage() {
                           to="/signin"
                           className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                         >
-                          Login
-                        </NavLink>
-                      </p>
-                    </form>
+                          Create an Account
+                        </button>
+                        <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                          Already have an account?{" "}
+                          <NavLink
+                            to="/signin"
+                            className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                          >
+                            Login
+                          </NavLink>
+                        </p>
+                      </form>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </section>
+              </section>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }
 

@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import PageNav from "../components/PageNav";
 import loginimg from "/loginimg.png";
+import Footer from "../components/Footer";
 
 function Loginpage() {
   return (
@@ -13,9 +14,8 @@ function Loginpage() {
               <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-40">
                 <div className="text-center">
                   <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-                    Log Into Your{" "}
                     <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
-                      World
+                    Log Into Your World
                     </span>
                   </h1>
                   <p className="text-gray-100 sm:text-2xl mt-2">
@@ -117,6 +117,7 @@ function Loginpage() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
