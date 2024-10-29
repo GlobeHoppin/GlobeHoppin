@@ -1,7 +1,4 @@
-import {
-  Disclosure,
-  Menu,
-} from "@headlessui/react";
+import { Disclosure, Menu } from "@headlessui/react";
 import {
   ArrowRightEndOnRectangleIcon,
   Bars3Icon,
@@ -51,19 +48,40 @@ function PageNav() {
             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
               <div className="flex flex-shrink-0 items-center">
                 <NavLink to="/">
-                  <img alt="Logo" src={logo} className="h-8 w-auto" />
+                  <img
+                    alt="Logo"
+                    src={logo}
+                    className="h-8 w-auto"
+                    style={{
+                      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.transform =
+                        "perspective(500px) rotateX(15deg) rotateY(15deg) scale(1.1)";
+                      e.target.style.boxShadow =
+                        "0 10px 20px rgba(0, 0, 0, 0.2)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.transform = "none";
+                      e.target.style.boxShadow = "none";
+                    }}
+                  />
                 </NavLink>
               </div>
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
                   {navigation.map((item) => (
                     <NavLink
-                      key={item.name}
-                      to={item.href}
-                      className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                    >
-                      {item.name}
-                    </NavLink>
+                    key={item.name}
+                    to={item.href}
+                    className="relative text-gray-300 hover:text-white rounded-md px-3 py-2 text-sm font-medium group"
+                  >
+                    {item.name}
+                    <span
+                      className="absolute left-0 bottom-0 w-0 h-0.5 bg-white transition-all duration-300 ease-in-out group-hover:w-full"
+                    ></span>
+                  </NavLink>
+                  
                   ))}
                 </div>
               </div>

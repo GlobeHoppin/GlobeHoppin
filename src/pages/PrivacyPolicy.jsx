@@ -1,134 +1,136 @@
 import PageNav from "../components/PageNav";
-import { Box, Typography, Paper } from "@mui/material";
-import { styled } from "@mui/system";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Footer from "../components/Footer";
+import { useEffect, useState } from "react";
 
-// Styled components for the privacy policy page
-const PolicyContainer = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(4),
-  maxWidth: "800px",
-  margin: "auto",
-  backdropFilter: "blur(10px)",
-  backgroundColor: "rgba(47, 47, 47, 0.5)", // Similar to FAQ component
-  borderRadius: theme.shape.borderRadius,
-  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-  "&:hover": {
-    transform: "translateY(-5px)",
-    boxShadow: "0 20px 40px rgba(0, 0, 0, 0.6)",
-  },
-}));
+function PrivacyPolicy() {
+  const [isVisible, setIsVisible] = useState(false);
 
-const theme = createTheme({
-  palette: {
-    mode: "dark",
-    background: {
-      default: "#121212",
-    },
-    primary: {
-      main: "#ff6f61",
-    },
-    secondary: {
-      main: "#ff3d00",
-    },
-  },
-  typography: {
-    h4: {
-      fontFamily: "Future2, Arial, sans-serif",
-      fontWeight: "bold", // Bold like FAQ titles
-      fontSize: "2rem", // Similar size as in FAQ
-    },
-    h6: {
-      fontFamily: "Future2, Arial, sans-serif",
-      color: "#ffffff", // White color like FAQ
-      fontWeight: "bold",
-      fontSize: "1.25rem", // Smaller size for subtitles
-    },
-    body1: {
-      fontFamily: "Arial, sans-serif",
-      color: "#b0b0b0", // Gray color like the FAQ answers
-      fontSize: "1rem",
-      lineHeight: "1.6", // Similar relaxed line height
-    },
-  },
-});
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100); // Adjust the duration as needed
+    return () => clearTimeout(timer);
+  }, []);
 
-// Background container for the privacy policy page
-const BackgroundContainer = styled(Box)(() => ({
-  minHeight: "100vh",
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  padding: "20px",
-}));
-
-const PrivacyPolicy = () => {
   return (
-    <div className="relative isolate px-6 pt-14 lg:px-8">
-      <PageNav />
-      <ThemeProvider theme={theme}>
-        <BackgroundContainer>
-          <PolicyContainer>
-            <Typography
-              variant="h4"
-              align="center"
-              color="white"
-              gutterBottom
-              fontFamily={"Future2, Helvetica, Arial"}
+    <>
+      <div className="relative isolate px-6 pt-14 lg:px-8 bg-gradient-to-r from-blue-50 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800">
+        <PageNav />
+        <div className="-mt-6 mx-auto py-12 sm:py-24 lg:py-16 text-gray-200 max-w-3xl">
+          <section className="bg-white dark:bg-gray-900 shadow-lg rounded-lg p-8 lg:p-12">
+            <h2
+              className={`mb-8 text-5xl font-thin tracking-wide text-center text-gray-800 dark:text-gray-200 transition-transform duration-700 ${
+                isVisible ? "scale-100 opacity-100" : "scale-90 opacity-0"
+              }`}
             >
               Privacy Policy
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              Welcome to our Privacy Policy page. Your privacy is critically important to us.
-            </Typography>
+            </h2>
+            <p className="mb-10 text-lg font-light text-center text-gray-600 dark:text-gray-400">
+              Learn how we collect, use, and safeguard your personal information when you use our services.
+            </p>
 
-            <Typography variant="h6" gutterBottom>
-              1. Information We Collect
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              We collect several types of information for various purposes to provide and improve our service to you.
-            </Typography>
+            {/* Information Collection Section */}
+            <div className="space-y-10">
+              <div className="border-l-4 border-blue-500 pl-4">
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
+                  Information Collection
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  We gather various types of information, including:
+                </p>
+                <ul className="list-disc list-inside mt-4 text-gray-700 dark:text-gray-300 space-y-2">
+                  <li><strong>Personal Information:</strong> Includes name, email, and profile data provided directly by you.</li>
+                  <li><strong>Usage Data:</strong> Information like pages visited and interactions, to enhance user experience.</li>
+                  <li><strong>Location Data:</strong> Collected to enable location-specific features and improve app functionality.</li>
+                </ul>
+              </div>
 
-            <Typography variant="h6" gutterBottom>
-              2. How We Use Your Information
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              We use the data we collect to operate, maintain, and improve our services. This includes using your data to understand how users interact with our services and to communicate updates.
-            </Typography>
+              {/* Use of Information Section */}
+              <div className="border-l-4 border-blue-500 pl-4">
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
+                  Use of Information
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  We use your data to:
+                </p>
+                <ul className="list-disc list-inside mt-4 text-gray-700 dark:text-gray-300 space-y-2">
+                  <li>Provide personalized content and features</li>
+                  <li>Analyze trends to enhance our services</li>
+                  <li>Ensure security and resolve technical issues</li>
+                  <li>Send updates and notifications based on your interests</li>
+                </ul>
+              </div>
 
-            <Typography variant="h6" gutterBottom>
-              3. Cookies
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              We use cookies and similar tracking technologies to track the activity on our website and hold certain information.
-            </Typography>
+              {/* Data Sharing and Disclosure Section */}
+              <div className="border-l-4 border-blue-500 pl-4">
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
+                  Data Sharing and Disclosure
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  We respect your privacy and limit data sharing as follows:
+                </p>
+                <ul className="list-disc list-inside mt-4 text-gray-700 dark:text-gray-300 space-y-2">
+                  <li>Trusted partners for service improvements</li>
+                  <li>Legal obligations and compliance with authorities</li>
+                  <li>Potential business mergers or acquisitions</li>
+                </ul>
+              </div>
 
-            <Typography variant="h6" gutterBottom>
-              4. Data Protection Rights
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              You have the right to access, update, or delete your personal information. If you make a request, we have one month to respond to you.
-            </Typography>
+              {/* Data Security Section */}
+              <div className="border-l-4 border-blue-500 pl-4">
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
+                  Data Security
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  We implement robust security practices to protect your data, including encryption, secure access, and regular monitoring. However, no data transmission over the internet is fully secure.
+                </p>
+              </div>
 
-            <Typography variant="h6" gutterBottom>
-              5. Changes to This Privacy Policy
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              We may update our Privacy Policy from time to time. You are advised to review this page periodically for any changes.
-            </Typography>
+              {/* Your Rights Section */}
+              <div className="border-l-4 border-blue-500 pl-4">
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
+                  Your Rights
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  You can:
+                </p>
+                <ul className="list-disc list-inside mt-4 text-gray-700 dark:text-gray-300 space-y-2">
+                  <li>Request access to your data</li>
+                  <li>Correct inaccurate information</li>
+                  <li>Request data deletion in certain situations</li>
+                  <li>Withdraw consent for data processing</li>
+                </ul>
+              </div>
 
-            <Typography variant="h6" gutterBottom>
-              6. Contact Us
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              If you have any questions about this Privacy Policy, please contact us.
-            </Typography>
-          </PolicyContainer>
-        </BackgroundContainer>
-      </ThemeProvider>
-    </div>
+              {/* Changes to Privacy Policy Section */}
+              <div className="border-l-4 border-blue-500 pl-4">
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
+                  Changes to this Privacy Policy
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Our policy may change periodically. We encourage you to review it regularly for updates.
+                </p>
+              </div>
+
+              {/* Contact Us Section */}
+              <div className="border-l-4 border-blue-500 pl-4">
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
+                  Contact Us
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  For any questions or concerns, reach out to us at:
+                </p>
+                <address className="not-italic mt-2 text-gray-700 dark:text-gray-300">
+                  support@globehoppin.com
+                </address>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <Footer />
+    </>
   );
-};
+}
 
 export default PrivacyPolicy;

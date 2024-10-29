@@ -1,4 +1,4 @@
-import { useState } from "react"; 
+import { useState,useEffect } from "react"; 
 import PageNav from "../components/PageNav"; 
 const mockHotels = {
       'Andhra Pradesh': [
@@ -373,7 +373,7 @@ function BookingPage() {
   const [numGuests, setNumGuests] = useState(1);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [bookingDetails, setBookingDetails] = useState(null);
-
+  const [headingVisible, setHeadingVisible] = useState(false);
   const handleLocationChange = (event) => {
     const location = event.target.value;
     setSelectedLocation(location);
@@ -387,6 +387,10 @@ function BookingPage() {
     const hotel = hotelOptions.find((hotel) => hotel.name === event.target.value);
     setSelectedHotel(hotel);
   };
+  useEffect(() => {
+    // Trigger the animation by setting headingVisible to true after the component mounts
+    setHeadingVisible(true);
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -416,27 +420,39 @@ function BookingPage() {
     setIsPopupOpen(false);
   };
 
+  
   return (
-    <div className="relative isolate px-6 pt-14 lg:px-8">
+    <div className="relative isolate px-6 lg:px-8">
       <PageNav />
-      <div className="mx-auto py-12 text-gray-200 sm:py-48 lg:py-12">
+      <div className="mx-auto py-12 text-gray-200 sm:py-48 lg:py-6">
+        
         <section className="bg-white dark:bg-gray-900">
-          <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-            <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-blue-600">
-              Booking System
+          <div className="py-8 lg:py-14 px-4 mx-auto max-w-screen-sm">
+          <h2
+              className={`mb-1 text-4xl tracking-tight text-center text-blue-200 ${
+                headingVisible ? 'fade-in-slide-up' : ''
+              }`}
+            >
+              Stay & Explore
             </h2>
-
-            <div className="bg-pink-200 border border-gray-300 rounded-lg shadow-lg p-6"> {/* Pink background */}
-              <form className="space-y-4" onSubmit={handleSubmit}>
+            <h2
+              className={`mb-2 text-3xl tracking-tight text-center text-blue-200 ${
+                headingVisible ? 'fade-in-slide-up' : ''
+              }`}
+            >
+              Adventure awaits, book now!
+            </h2>
+            <div className="bg-white bg-opacity-20 rounded-lg shadow-lg p-6"> {/* Transparent background */}
+              <form className="space-y-2" onSubmit={handleSubmit}>
                 <div>
-                  <label htmlFor="location" className="block text-black text-lg font-semibold">
+                  <label htmlFor="location" className="block text-lg text-blue-200 font-semibold">
                     Select Location:
                   </label>
                   <select
                     id="location"
                     value={selectedLocation}
                     onChange={handleLocationChange}
-                    className="block w-full p-2 border border-gray-300 rounded text-black"
+                    className="block w-full p-2 rounded bg-transparent border border-blue-200 text-blue-400"
                   >
                     <option value="">--Choose a location--</option>
                     {Object.keys(mockHotels).map((location) => (
@@ -446,16 +462,16 @@ function BookingPage() {
                     ))}
                   </select>
                 </div>
-
+  
                 {hotelOptions.length > 0 && (
                   <div>
-                    <label htmlFor="hotel" className="block text-black text-lg font-semibold">
+                    <label htmlFor="hotel" className="block text-lg font-semibold text-blue-200">
                       Select Hotel:
                     </label>
                     <select
                       id="hotel"
                       onChange={handleHotelChange}
-                      className="block w-full p-2 border border-gray-300 rounded text-black"
+                      className="text-blue-400 block w-full bg-transparent p-2 border border-gray-300 rounded text-black"
                     >
                       {hotelOptions.map((hotel, index) => (
                         <option key={index} value={hotel.name}>
@@ -465,9 +481,9 @@ function BookingPage() {
                     </select>
                   </div>
                 )}
-
+  
                 <div>
-                  <label htmlFor="checkin" className="block text-black text-lg font-semibold">
+                  <label htmlFor="checkin" className="block text-blue-200 text-lg font-semibold">
                     Check-In Date:
                   </label>
                   <input
@@ -475,13 +491,13 @@ function BookingPage() {
                     id="checkin"
                     value={checkInDate}
                     onChange={(e) => setCheckInDate(e.target.value)}
-                    className="block w-full p-2 border border-gray-300 rounded text-black"
+                    className="block bg-transparent border border-blue-200 text-blue-400 w-full p-2 border border-gray-300 rounded text-black"
                     required
                   />
                 </div>
-
+  
                 <div>
-                  <label htmlFor="checkout" className="block text-black text-lg font-semibold">
+                  <label htmlFor="checkout" className="text-blue-200 block text-lg font-semibold">
                     Check-Out Date:
                   </label>
                   <input
@@ -489,13 +505,13 @@ function BookingPage() {
                     id="checkout"
                     value={checkOutDate}
                     onChange={(e) => setCheckOutDate(e.target.value)}
-                    className="block w-full p-2 border border-gray-300 rounded text-black"
+                    className="bg-transparent border border-blue-200 text-blue-400 block w-full p-2 border border-gray-300 rounded text-black"
                     required
                   />
                 </div>
-
+  
                 <div>
-                  <label htmlFor="guests" className="block text-black text-lg font-semibold">
+                  <label htmlFor="guests" className="text-blue-200 block text-lg font-semibold">
                     Number of Guests:
                   </label>
                   <input
@@ -503,15 +519,15 @@ function BookingPage() {
                     id="guests"
                     value={numGuests}
                     onChange={(e) => setNumGuests(Math.max(1, e.target.value))}
-                    className="block w-full p-2 border border-gray-300 rounded text-black"
+                    className="bg-transparent border border-blue-200 text-blue-400 block w-full p-2 border border-gray-300 rounded text-black"
                     min="1"
                   />
                 </div>
-
+  
                 <div>
                   <button
                     type="submit"
-                    className="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    className="mt-4 w-full p-2 bg-blue-200 text-black rounded hover:bg-blue-300"
                   >
                     Book Now
                   </button>
@@ -520,11 +536,11 @@ function BookingPage() {
             </div>
           </div>
         </section>
-
+  
         {/* Popup for booking confirmation */}
         {isPopupOpen && bookingDetails && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-pink-200 border border-gray-300 rounded-lg shadow-lg p-6"> {/* Pink background */}
+            <div className="bg-white bg-opacity-20 border border-gray-300 rounded-lg shadow-lg p-6"> {/* Transparent background */}
               <h2 className="text-xl font-bold text-black">Booking Confirmation</h2>
               <p className="text-black">Location: {bookingDetails.location}</p>
               <p className="text-black">Hotel: {bookingDetails.hotel}</p>
@@ -545,6 +561,7 @@ function BookingPage() {
       </div>
     </div>
   );
+  
 }
 
 export default BookingPage;
