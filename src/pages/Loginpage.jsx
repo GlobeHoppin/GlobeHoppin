@@ -1,8 +1,41 @@
 import { NavLink } from "react-router-dom";
 import PageNav from "../components/PageNav";
 import loginimg from "/loginimg.png";
+import Footer from "../components/Footer";
+import { toast } from "react-hot-toast";
+import { apiConnector } from "../services/apiConnector"
+import { LOGIN_API } from "../ApiEndpoints";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Loginpage() {
+  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  const [password, setPassword] = useState("");
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    const toastId = toast.loading("Loading...");
+		try {
+			const response = await apiConnector("POST", LOGIN_API, {
+				email,
+				password,
+			});
+
+			console.log("LOGIN API RESPONSE............", response);
+
+			if (response.error) {
+				throw new Error(response.error.message);
+			}
+
+			toast.success("Login Successful");
+			navigate("/");
+		} catch (error) {
+			console.log("LOGIN API ERROR............", error);
+			toast.error("Login Failed");
+		}
+		toast.dismiss(toastId);  
+  }
+
   return (
     <>
       <div className="relative isolate px-6 pt-14 lg:px-8">
@@ -13,9 +46,8 @@ function Loginpage() {
               <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-40">
                 <div className="text-center">
                   <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-                    Log Into Your{" "}
                     <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
-                      World
+                    Log Into Your World
                     </span>
                   </h1>
                   <p className="text-gray-100 sm:text-2xl mt-2">
@@ -40,7 +72,7 @@ function Loginpage() {
                       <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         Sign in to your account
                       </h1>
-                      <form className="space-y-4 md:space-y-6" action="#">
+                      <form className="space-y-4 md:space-y-6" onSubmit={submitHandler}>
                         <div>
                           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Your email
@@ -49,6 +81,8 @@ function Loginpage() {
                             type="email"
                             name="email"
                             id="email"
+                            value={email}
+                            onChange={(e)=>setEmail(e.target.value)}
                             className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="name@email.com"
                             required=""
@@ -62,6 +96,8 @@ function Loginpage() {
                             type="password"
                             name="password"
                             id="password"
+                            value={password}
+                            onChange={(e)=>setPassword(e.target.value)}
                             placeholder="••••••••"
                             className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required=""
@@ -115,6 +151,7 @@ function Loginpage() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
