@@ -24,6 +24,7 @@ const ReviewsAndRatings = () => {
       return;
     }
 
+
     const newReview = {
       name: reviewName,
       destination: reviewPlace,
@@ -95,7 +96,6 @@ const ReviewsAndRatings = () => {
       setShowAlert(false);
     }, 3000));
   };
-
 
   const renderStarRating = (rating, setRating) => (
     <div className="flex">
@@ -182,6 +182,7 @@ const ReviewsAndRatings = () => {
               <div className="mt-6">
                 <p className="font-semibold">Questionnaire:</p>
                 <p className="mt-2">1. How did our trip planner help you organize your itinerary?</p>
+
                 <textarea className="w-full p-2 border border-gray-300 rounded mt-2" 
                 maxLength={150} 
                 placeholder="Your answer" 
@@ -230,6 +231,7 @@ const ReviewsAndRatings = () => {
       <div className=" m-auto">\
         <ReviewCarousel />
       </div>
+
       {/* Custom Alert */}
       {showAlert && (
         <div className="fixed top-20 right-5 bg-gradient-to-r from-blue-600 to-blue-300 text-white rounded-lg shadow-lg transition duration-300 transform scale-105">
