@@ -11,9 +11,6 @@ import PageNotFound from "./pages/PageNotFound";
 import TermsOfUse from "./pages/TermsOfUse";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 
-
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-
 import "./App.css";
 
 import Applayout from "./pages/Applayout";
