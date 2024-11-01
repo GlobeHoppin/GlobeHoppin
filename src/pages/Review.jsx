@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import PageNav from "../components/PageNav";
-
+import ReviewCarousel from "../components/ReviewCarousel";
+import { REVIEW_GET_POST } from "../ApiEndpoints";
 const ReviewsAndRatings = () => {
-  const [reviews, setReviews] = useState([]);
   const [reviewName, setReviewName] = useState("");
   const [reviewPlace, setReviewPlace] = useState("");
   const [reviewDesc, setReviewDesc] = useState("");
+  const [reviewPlan, setReviewPlan] = useState("");
+  const [reviewRecom, setReviewRecom] = useState("");
   const [showForm, setShowForm] = useState(false);
   const [overallRating, setOverallRating] = useState(0);
   const [planningRating, setPlanningRating] = useState(0);
@@ -15,54 +17,62 @@ const ReviewsAndRatings = () => {
   const [progress, setProgress] = useState(0); // State for progress bar width
   const [alertTimeout, setAlertTimeout] = useState(null); // State for alert timeout
 
-  useEffect(() => {
-    const savedReviews = loadReviewsFromFile();
-    setReviews(savedReviews);
-  }, []);
-
-  const loadReviewsFromFile = () => {
-    try {
-      const data = localStorage.getItem("reviews");
-      if (data) {
-        return JSON.parse(data);
-      }
-    } catch (error) {
-      console.error("Error loading reviews:", error);
-    }
-    return [];
-  };
-
-  const handleAddReview = () => {
+  const handleAddReview = async() => {
     // Validate form fields
     if (!reviewName || !reviewPlace || !reviewDesc || overallRating === 0 || planningRating === 0 || activitiesRating === 0) {
       setError("Please fill out all fields, including ratings.");
       return;
     }
 
+
     const newReview = {
       name: reviewName,
-      place: reviewPlace,
-      description: reviewDesc,
-      overallRating,
-      planningRating,
-      activitiesRating,
+      destination: reviewPlace,
+      reviewDescription: reviewDesc,
+      tripPlannerHelp: reviewPlan,
+      recommendationReason: reviewRecom,
+      ratings: {
+        overallExperience : overallRating,
+        planningProcess: planningRating,
+        activities: activitiesRating,
+      },
       timestamp: new Date().toLocaleString(),
     };
-    const updatedReviews = [newReview, ...reviews];
-    setReviews(updatedReviews);
-    saveReviewsToFile(updatedReviews);
-    setReviewName("");
-    setReviewPlace("");
-    setReviewDesc("");
-    setOverallRating(0);
-    setPlanningRating(0);
-    setActivitiesRating(0);
-    setShowForm(false);
-    setError(""); // Clear any previous errors
-
-    // Show alert for review submission
-    setShowAlert(true);
-    startProgress(); // Start the progress for hiding the alert
+    
+    try {
+      const response = await fetch(REVIEW_GET_POST, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newReview),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to submit review");
+      }
+  
+      setReviewName("");
+      setReviewPlace("");
+      setReviewDesc("");
+      setReviewPlan("");
+      setReviewRecom("");
+      setOverallRating(0);
+      setPlanningRating(0);
+      setActivitiesRating(0);
+      setShowForm(false);
+      setError(""); // Clear any previous errors
+  
+      // Show alert for review submission
+      setShowAlert(true);
+      startProgress(); // Start the progress for hiding the alert
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    } catch (error) {
+      console.error("Error submitting review:", error);
+      setError("An error occurred while submitting your review. Please try again.");
+    }
   };
 
   const startProgress = () => {
@@ -85,14 +95,6 @@ const ReviewsAndRatings = () => {
       clearInterval(interval);
       setShowAlert(false);
     }, 3000));
-  };
-
-  const saveReviewsToFile = (reviews) => {
-    try {
-      localStorage.setItem("reviews", JSON.stringify(reviews));
-    } catch (error) {
-      console.error("Error saving reviews:", error);
-    }
   };
 
   const renderStarRating = (rating, setRating) => (
@@ -168,6 +170,7 @@ const ReviewsAndRatings = () => {
               />
               <label className="block mt-4 mb-2 text-sm font-medium">Review Description:</label>
               <textarea
+              maxLength={150}
                 value={reviewDesc}
                 onChange={(e) => setReviewDesc(e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded"
@@ -179,10 +182,21 @@ const ReviewsAndRatings = () => {
               <div className="mt-6">
                 <p className="font-semibold">Questionnaire:</p>
                 <p className="mt-2">1. How did our trip planner help you organize your itinerary?</p>
-                <textarea className="w-full p-2 border border-gray-300 rounded mt-2" placeholder="Your answer" required />
+
+                <textarea className="w-full p-2 border border-gray-300 rounded mt-2" 
+                maxLength={150} 
+                placeholder="Your answer" 
+                value={reviewPlan}
+                onChange={(e) => setReviewPlan(e.target.value)}
+                required />
                 
                 <p className="mt-4">2. Would you recommend this trip to other travelers? Why or why not?</p>
-                <textarea className="w-full p-2 border border-gray-300 rounded mt-2" placeholder="Your answer" required />
+                <textarea className="w-full p-2 border border-gray-300 rounded mt-2" 
+                maxLength={150}
+                 placeholder="Your answer"
+                 value={reviewRecom}
+                onChange={(e) => setReviewRecom(e.target.value)}
+                  required />
               </div>
 
               {/* Ratings */}
@@ -213,6 +227,9 @@ const ReviewsAndRatings = () => {
             </div>
           </div>
         )}
+      </div>
+      <div className=" m-auto">\
+        <ReviewCarousel />
       </div>
 
       {/* Custom Alert */}
