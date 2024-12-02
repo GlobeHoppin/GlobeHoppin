@@ -41,7 +41,7 @@ function Registerpage() {
 		} catch (error) {
 			console.log("SIGNUP API ERROR............", error);
 			toast.error("Signup Failed");
-			navigate("/register");
+			navigate("/signup");
 		}
 		// dispatch(setLoading(false));
 		toast.dismiss(toastId);
@@ -155,7 +155,7 @@ function Registerpage() {
                             to="/signin"
                             className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                           >
-                            Login
+                            Signin
                           </NavLink>
                         </p>
                       </form>

@@ -4,7 +4,7 @@ import { BsDiscord, BsDribbble, BsGithub, BsTwitterX } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa";
 import GoogleTranslate from "../pages/GoogleTranslate";
 
-import { useEffect } from "react"; // Import useEffect
+import { useEffect } from "react"; // Import useffect
 
 function Footer() {
   useEffect(() => {
@@ -109,7 +109,7 @@ function Footer() {
           <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
           <div className="sm:flex sm:items-center sm:justify-between">
             <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-              © 2023{" "}
+              © {new Date().getFullYear()}{" "}
               <NavLink to="/" className="hover:underline">
                 GlobeHoppin
               </NavLink>

@@ -8,8 +8,8 @@ import PageNotFound from "./pages/PageNotFound";
 
 // import PrivacyPolicy from "./pages/PrivacyPolicy";
 
-import TermsOfUse from "./pages/TermsOfUse";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
+// import TermsOfUse from "./pages/TermsOfUse";
+// import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 import "./App.css";
 
@@ -55,8 +55,8 @@ const App = () => {
 
           <Route path="MapComponent" element={<MapComponent />} />
           
-          <Route path="PrivacyPolicy" element={<PrivacyPolicy />} />
-          <Route path="TermsOfUse" element={<TermsOfUse />} />
+          {/* <Route path="PrivacyPolicy" element={<PrivacyPolicy />} /> */}
+          {/* <Route path="TermsOfUse" element={<TermsOfUse />} /> */}
           
 
           <Route path="BookingPage" element={<BookingPage />} />
@@ -68,8 +68,8 @@ const App = () => {
 
           <Route path="about" element={<Aboutpage />} />
           <Route path="signin" element={<Loginpage />} />
-          <Route path="register" element={<Registerpage />} />
-          <Route path="PrivacyPolicy" element={<PrivacyPolicy />} />
+          <Route path="signup" element={<Registerpage />} />
+          {/* <Route path="PrivacyPolicy" element={<PrivacyPolicy />} /> */}
           <Route path="faq" element={<FAQPage />} />{" "}
           {/* Add the FAQPage route */}
           <Route path="trip-budget" element={<TripBudgetCalculator />} />

@@ -72,7 +72,7 @@ function Contactpage() {
                 feature? Need details about our plans? Let us know.
               </p>
 
-              <form onSubmit={handleSubmit} className="space-y-8">
+              {/* <form onSubmit={handleSubmit} className="space-y-8"> */}
 
               <form action="#" className="space-y-8" onSubmit={handleSubmit}>
 

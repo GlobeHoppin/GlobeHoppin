@@ -194,7 +194,7 @@ function Aboutpage() {
               Contact Us
             </NavLink>
             <NavLink
-              to="/register"
+              to="/signup"
               className="rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 hover:scale-105 transition-transform duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Join Us

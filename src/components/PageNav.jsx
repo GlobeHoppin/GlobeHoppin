@@ -8,15 +8,15 @@ import { NavLink } from "react-router-dom";
 import logo from "/logo.png";
 
 const navigation = [
-  { name: "About", href: "/about", current: false },
-  { name: "Mark Your Journey", href: "/app", current: false },
+  { name: "Pin your location", href: "/app", current: false },
   { name: "MapComponent", href: "/MapComponent", current: false },
+  { name: "About", href: "/about", current: false },
   { name: "Contact", href: "/contact", current: false },
-  { name: "BookingPage", href: "/BookingPage", current: false },
-  { name: "YourBookings", href: "/YourBookings", current: false },
+  // { name: "BookingPage", href: "/BookingPage", current: false },
+  // { name: "YourBookings", href: "/YourBookings", current: false },
   { name: "Guide", href: "/Famous", current: false },
   { name: "Trip Budget Calculator", href: "/trip-budget", current: false },
-  { name: "Review", href: "/review", current: false },
+  // { name: "Review", href: "/review", current: false },
 ];
 
 function classNames(...classes) {

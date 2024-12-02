@@ -101,19 +101,19 @@ function Homepage() {
 
               <div className="py-3 grid gap-3 md:flex md:justify-center md:gap-x-6 md:w-full">
                 <NavLink
-                  to="/login"
+                  to="/signin"
                   className="rounded-md bg-indigo-600 px-4 py-2 text-lg font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
-                  Login
+                  Signin
                 </NavLink>
 
                 {/* Changes Made here text-gray-900 to  text-white, adjusted padding and text-sm to text-lg(to make visible better) */}
 
                 <NavLink
-                  to="/register"
+                  to="/signup"
                   className="rounded-md px-4 py-2 text-lg font-semibold text-white border border-white-900 hover:border-blue-500"
                 >
-                  Register
+                  Signup
                 </NavLink>
               </div>
             </div>
