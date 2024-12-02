@@ -8,8 +8,16 @@ import {
   ShareIcon,
 } from "@heroicons/react/24/outline";
 import FAQ from "../components/FAQ";
+import { useEffect, useState } from "react";
+import { isSignedIn } from "../services/utils";
 
 function Homepage() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  useEffect(() => {
+    setIsLoggedIn(isSignedIn());
+  }, [isLoggedIn]);
+
   const features = [
     {
       name: "Pin Your Location",
@@ -99,23 +107,28 @@ function Homepage() {
 
               {/* Changes Made below added: [py-3 grid gap-3], modified To: [md:flex md:justify-center md:gap-x-6 md:w-full] */}
 
-              <div className="py-3 grid gap-3 md:flex md:justify-center md:gap-x-6 md:w-full">
-                <NavLink
-                  to="/signin"
-                  className="rounded-md bg-indigo-600 px-4 py-2 text-lg font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Signin
-                </NavLink>
+              {
+                !isLoggedIn ? (
+                  <div className="py-3 grid gap-3 md:flex md:justify-center md:gap-x-6 md:w-full">
+                    <NavLink
+                      to="/signin"
+                      className="rounded-md bg-indigo-600 px-4 py-2 text-lg font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    >
+                      Signin
+                    </NavLink>
 
-                {/* Changes Made here text-gray-900 to  text-white, adjusted padding and text-sm to text-lg(to make visible better) */}
+                    {/* Changes Made here text-gray-900 to  text-white, adjusted padding and text-sm to text-lg(to make visible better) */}
 
-                <NavLink
-                  to="/signup"
-                  className="rounded-md px-4 py-2 text-lg font-semibold text-white border border-white-900 hover:border-blue-500"
-                >
-                  Signup
-                </NavLink>
-              </div>
+                    <NavLink
+                      to="/signup"
+                      className="rounded-md px-4 py-2 text-lg font-semibold text-white border border-white-900 hover:border-blue-500"
+                    >
+                      Signup
+                    </NavLink>
+                  </div>
+                ): <div></div>
+              }
+        
             </div>
           </div>
         </div>

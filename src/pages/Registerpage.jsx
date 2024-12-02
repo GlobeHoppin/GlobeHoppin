@@ -2,11 +2,10 @@ import PageNav from "../components/PageNav";
 import { NavLink } from "react-router-dom";
 import signupimg from "/signupimg.png";
 import Footer from "../components/Footer";
-import {apiConnector} from "../services/apiConnector";
 import { toast } from "react-hot-toast";
-import { SIGNUP_API } from "../ApiEndpoints";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { signup } from "../services/apiConnector";
 
 function Registerpage() {
   const [email, setEmail] = useState("");
@@ -21,25 +20,11 @@ function Registerpage() {
     const toastId = toast.loading("Loading...");
     
 		try {
-			const response = await apiConnector("POST", SIGNUP_API, {
-        email,
-        name, 
-        password: pass,
-        gender: "Male",
-        country: "India",
-        phoneNumber: "9876543210",
-        countryCode: "+91"
-			});
-
-			console.log("SIGNUP API RESPONSE............", response);
-
-			if (response.error) {
-				throw new Error(response.error.message);
-			}
+      await signup({email, name, password: pass,});
 			toast.success("Signup Successful");
-			navigate("/signin");
+			navigate("/");
 		} catch (error) {
-			console.log("SIGNUP API ERROR............", error);
+      console.log("SIGNUP API ERROR............", error);
 			toast.error("Signup Failed");
 			navigate("/signup");
 		}
@@ -133,7 +118,7 @@ function Registerpage() {
                             Confirm password
                           </label>
                           <input
-                            type="confirm-password"
+                            type="password"
                             name="confirm-password"
                             id="confirm-password"
                             value={cPass}

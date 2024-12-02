@@ -3,8 +3,7 @@ import PageNav from "../components/PageNav";
 import loginimg from "/loginimg.png";
 import Footer from "../components/Footer";
 import { toast } from "react-hot-toast";
-import { apiConnector } from "../services/apiConnector"
-import { LOGIN_API } from "../ApiEndpoints";
+import { signin } from "../services/apiConnector"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -16,17 +15,7 @@ function Loginpage() {
     e.preventDefault();
     const toastId = toast.loading("Loading...");
 		try {
-			const response = await apiConnector("POST", LOGIN_API, {
-				email,
-				password,
-			});
-
-			console.log("LOGIN API RESPONSE............", response);
-
-			if (response.error) {
-				throw new Error(response.error.message);
-			}
-
+      await signin({email, password});
 			toast.success("Login Successful");
 			navigate("/");
 		} catch (error) {

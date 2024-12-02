@@ -6,10 +6,12 @@ import {
 } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 import logo from "/logo.png";
+import { useEffect, useState } from "react";
+import { isSignedIn } from "../services/utils";
 
 const navigation = [
   { name: "Pin your location", href: "/app", current: false },
-  { name: "MapComponent", href: "/MapComponent", current: false },
+  // { name: "MapComponent", href: "/MapComponent", current: false },
   { name: "About", href: "/about", current: false },
   { name: "Contact", href: "/contact", current: false },
   // { name: "BookingPage", href: "/BookingPage", current: false },
@@ -19,12 +21,18 @@ const navigation = [
   // { name: "Review", href: "/review", current: false },
 ];
 
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 function PageNav() {
-  const isSignedIn = false; // Placeholder for sign-in status
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  useEffect(() => {
+    setIsLoggedIn(isSignedIn());
+  }, [isLoggedIn]);
+
   return (
     <div>
       <Disclosure as="nav" className="bg-slate-950 fixed inset-x-0 top-0 z-50">
@@ -87,7 +95,7 @@ function PageNav() {
               </div>
             </div>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-              {isSignedIn ? (
+              {isLoggedIn ? (
                 <>
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">
@@ -150,10 +158,10 @@ function PageNav() {
                         </Menu.Item>
                         <Menu.Item>
                           <NavLink
-                            to="/register"
+                            to="/signup"
                             className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
                           >
-                            Register
+                            Signup
                           </NavLink>
                         </Menu.Item>
                       </Menu.Items>

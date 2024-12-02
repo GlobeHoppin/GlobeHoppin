@@ -35,6 +35,7 @@ import "./App.css";
 
 import TripBudgetCalculator from "./pages/TripBudgetCalculatorPage";
 import ReviewsAndRatings from "./pages/Review";
+import Profile from "./pages/Profile";
 
 const App = () => {
   return (
@@ -42,30 +43,18 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="app" element={<Applayout />} />
           <Route path="contact" element={<Contactpage />} />
-
-
-
-          
           <Route path="BookingPage" element={<BookingPage />} />
           <Route path="Famous" element={<Famous />} />
           <Route path="YourBookings" element={<YourBookings />} />
-
-
           <Route path="MapComponent" element={<MapComponent />} />
-          
           {/* <Route path="PrivacyPolicy" element={<PrivacyPolicy />} /> */}
           {/* <Route path="TermsOfUse" element={<TermsOfUse />} /> */}
-          
-
           <Route path="BookingPage" element={<BookingPage />} />
           <Route path="Famous" element={<Famous />} />
           <Route path="YourBookings" element={<YourBookings />} />
-
-
-
-
           <Route path="about" element={<Aboutpage />} />
           <Route path="signin" element={<Loginpage />} />
           <Route path="signup" element={<Registerpage />} />
