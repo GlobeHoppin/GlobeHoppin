@@ -1,7 +1,7 @@
 /** @format */
 
 import axios from "axios";
-import { GET_PROFILE, LOGIN_API, SIGNUP_API } from "../ApiEndpoints";
+import { ADD_PIN, GET_PROFILE, LOGIN_API, SIGNUP_API } from "../ApiEndpoints";
 import { getTokenFromSessionStorage, saveProfileToSessionStorage, saveTokenToSessionStorage } from "./utils";
 
 export const axiosInstance = axios.create({});
@@ -24,7 +24,7 @@ export const signup = async (data) => {
 		if (response.error) {
 			throw new Error(response.error.message);
 		}
-		await saveTokenToSessionStorage(response.data.token);
+		saveTokenToSessionStorage(response.data.token);
 		await getProfile();
 	} catch (error) {
 		console.log("SIGNUP API ERROR............", error);
@@ -39,7 +39,7 @@ export const signin = async (data) => {
 		if (response.error) {
 			throw new Error(response.error.message);
 		}
-		await saveTokenToSessionStorage(response.data.token);
+		saveTokenToSessionStorage(response.data.token);
 		await getProfile();
 	} catch (error) {
 		console.log("LOGIN API ERROR............", error);
@@ -56,9 +56,25 @@ export const getProfile = async () => {
 		if (response.error) {
 			throw new Error(response.error.message);
 		}
-		await saveProfileToSessionStorage(response.data.user);
+		saveProfileToSessionStorage(response.data.user);
 	} catch (error) {
 		console.log("PROFILE API ERROR............", error);
+		throw error;
+	}
+}
+
+export const addPin = async (body) => {
+	try {
+		const response = await apiConnector("POST", ADD_PIN, body, {
+			Authorization: `Bearer ${getTokenFromSessionStorage()}`,
+		});
+		console.log("ADD PIN API RESPONSE............", response);
+		if (response.error) {
+			throw new Error(response.error.message);
+		}
+		await getProfile();
+	} catch (error) {
+		console.log("ADD PIN API ERROR............", error);
 		throw error;
 	}
 }
