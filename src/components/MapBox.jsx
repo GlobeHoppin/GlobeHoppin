@@ -3,7 +3,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { useEffect, useRef } from "react";
 
 function MapBox() {
-  mapboxgl.accessToken = import.meta.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
+  mapboxgl.accessToken = import.meta.env.VITE_REACT_APP_MAPBOX_ACCESS_TOKEN;
   const mapContainer = useRef(null);
   const map = useRef(null);
   //   const [markers, setMarkers] = useState([]);
