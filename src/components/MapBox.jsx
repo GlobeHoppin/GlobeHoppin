@@ -77,8 +77,8 @@ function MapBox() {
     // Create a default Marker, colored black, rotated 45 degrees.
     if (map.current) {
       user?.pins && user?.pins.map((place) => {
-        const lng = place.latitude;
-        const lat = place.longitude;
+        const lng = place.longitude;
+        const lat = place.latitude;
         return new mapboxgl.Marker({ color: place.color })
           .setLngLat([lng, lat])
           .setPopup(
