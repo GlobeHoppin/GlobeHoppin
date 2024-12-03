@@ -73,6 +73,13 @@ function MapBox() {
         spinGlobe();
     });
 
+    if (window.innerWidth >= 1024) {
+      // When animation is complete, start spinning if there is no ongoing interaction
+      map.current?.on('moveend', () => {
+        spinGlobe()
+      })
+    }
+    
     spinGlobe();
 
     // Create a default Marker, colored black, rotated 45 degrees.
