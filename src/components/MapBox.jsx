@@ -9,69 +9,61 @@ function MapBox() {
   const map = useRef(null);
 
   const [user] = useState(getProfileFromSessionStorage());
+  // The following values can be changed to control rotation speed:
+
+  // At low zooms, complete a revolution every two minutes.
+  const secondsPerRevolution = 240
+  // Above zoom level 5, do not rotate.
+  const maxSpinZoom = 5
+  // Rotate at intermediate speeds between zoom levels 3 and 5.
+  const slowSpinZoom = 3
+
+  let userInteracting = false
+  const spinEnabled = true
 
   useEffect(() => {
 
     if (map.current) return // initialize map only once
 
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: "mapbox://styles/aaa07/clzebw57v00bc01pr71jh4m87", // choose your map style
-      // make this configurable based on user's location
-      center: [77.1025, 20.5937], // starting position [lng, lat]
-      zoom: 1.5, // starting zoom
-      projection: "globe",
-    });
-
-    map.current.addControl(new mapboxgl.NavigationControl());
-    map.current.scrollZoom.disable();
-
-    map.current.on('style.load', () => {
-        map.current.setFog({}); // Set the default atmosphere style
-    });
-
-    // The following values can be changed to control rotation speed:
-
-    // At low zooms, complete a revolution every two minutes.
-    const secondsPerRevolution = 240;
-    // Above zoom level 5, do not rotate.
-    const maxSpinZoom = 5;
-    // Rotate at intermediate speeds between zoom levels 3 and 5.
-    const slowSpinZoom = 3;
-
-    let userInteracting = false;
-    const spinEnabled = true;
-
-    function spinGlobe() {
-        const zoom = map.current.getZoom();
-        if (spinEnabled && !userInteracting && zoom < maxSpinZoom) {
-            let distancePerSecond = 360 / secondsPerRevolution;
-            if (zoom > slowSpinZoom) {
-                // Slow spinning at higher zooms
-                const zoomDif =
-                    (maxSpinZoom - zoom) / (maxSpinZoom - slowSpinZoom);
-                distancePerSecond *= zoomDif;
-            }
-            const center = map.current.getCenter();
-            center.lng -= distancePerSecond;
-            // Smoothly animate the map over one second.
-            // When this animation is complete, it calls a 'moveend' event.
-            map.current.easeTo({ center, duration: 1000, easing: (n) => n });
-        }
+    if (mapContainer.current) {
+      map.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: "mapbox://styles/aaa07/clzebw57v00bc01pr71jh4m87", // choose your map style
+        // make this configurable based on user's location
+        center: [77.1025, 20.5937], // starting position [lng, lat]
+        zoom: 1.5, // starting zoom
+        projection: "globe",
+      });
+    } else {
+      console.error('mapContainer.current is not defined')
     }
 
-    // Pause spinning on interaction
-    map.current.on('mousedown', () => {
-        userInteracting = true;
-    });
-    map.current.on('dragstart', () => {
-        userInteracting = true;
-    });
+    function spinGlobe() {
+      const zoom = map.current?.getZoom()
+      if (spinEnabled && !userInteracting && (zoom ?? 0) < maxSpinZoom) {
+        let distancePerSecond = 360 / secondsPerRevolution
+        if ((zoom ?? 0) > slowSpinZoom) {
+          // Slow spinning at higher zooms
+          const zoomDif = (maxSpinZoom - (zoom ?? 0)) / (maxSpinZoom - slowSpinZoom)
+          distancePerSecond *= zoomDif
+        }
+        const center = map.current?.getCenter()
+        if (center) {
+          center.lng -= distancePerSecond
+        }
+        // Smoothly animate the map over one second.
+        // When this animation is complete, it calls a 'moveend' event.
+        map.current?.easeTo({ center, duration: 5000, easing: (n) => n * 5 })
+      }
 
-    // When animation is complete, start spinning if there is no ongoing interaction
-    map.current.on('moveend', () => {
-        spinGlobe();
-    });
+      // Pause spinning on interaction
+      map.current?.on('mousedown', () => {
+        userInteracting = true
+      })
+      map.current?.on('dragstart', () => {
+        userInteracting = true
+      })
+    }
 
     if (window.innerWidth >= 1024) {
       // When animation is complete, start spinning if there is no ongoing interaction
@@ -79,8 +71,8 @@ function MapBox() {
         spinGlobe()
       })
     }
-    
-    spinGlobe();
+
+    spinGlobe()
 
     // Create a default Marker, colored black, rotated 45 degrees.
     if (map.current) {
