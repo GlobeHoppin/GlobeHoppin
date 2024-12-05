@@ -7,6 +7,7 @@ import {
   ChatBubbleBottomCenterTextIcon,
   ShareIcon,
 } from "@heroicons/react/24/outline";
+import FlowChart from "./Flowchart";
 import FAQ from "../components/FAQ";
 import { useEffect, useState } from "react";
 import { isSignedIn } from "../services/utils";
@@ -150,10 +151,11 @@ function Homepage() {
                 </h3>
                 <p className="text-gray-400">{feature.description}</p>
               </div>
+              <br />
+          <FlowChart/>
             ))}
           </div>
         </div>
-
         {/* Image Gallery Section */}
         <div className="py-16">
           <h2 className="text-3xl font-bold text-center text-white mb-10">
