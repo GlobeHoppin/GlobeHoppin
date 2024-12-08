@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { isSignedIn } from "../services/utils";
 
 const navigation = [
-  { name: "Pin your location", href: "/app", current: false },
+  { name: "Pin your location", href: "/globe", current: false },
   // { name: "MapComponent", href: "/MapComponent", current: false },
   { name: "About", href: "/about", current: false },
   { name: "Contact", href: "/contact", current: false },

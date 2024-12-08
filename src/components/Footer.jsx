@@ -35,7 +35,7 @@ function Footer() {
 
   return (
     <>
-      <footer className="bg-white dark:bg-gray-900 mx-auto w-full max-w-screen-xl">
+      <footer className="bg-white dark:bg-gray-900 mx-auto w-full max-w-screen-xl z-40">
         <div className="absolute mx-auto w-full max-w-screen-xl p-4 py-6 pl-5 lg:py-8">
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">

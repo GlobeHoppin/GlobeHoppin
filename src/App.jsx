@@ -13,7 +13,7 @@ import PageNotFound from "./pages/PageNotFound";
 
 import "./App.css";
 
-import Applayout from "./pages/Applayout";
+import Applayout from "./pages/globe";
 import Contactpage from "./pages/Contactpage";
 import BookingPage from "./pages/booking";
 
@@ -36,6 +36,7 @@ import "./App.css";
 import TripBudgetCalculator from "./pages/TripBudgetCalculatorPage";
 import ReviewsAndRatings from "./pages/Review";
 import Profile from "./pages/Profile";
+import { Pin } from "./pages/Pin";
 
 const App = () => {
   return (
@@ -44,7 +45,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="app" element={<Applayout />} />
+          <Route path="globe" element={<Applayout />} />
+          <Route path="/pin" element={<Pin />} />
           <Route path="contact" element={<Contactpage />} />
           <Route path="BookingPage" element={<BookingPage />} />
           <Route path="Famous" element={<Famous />} />
