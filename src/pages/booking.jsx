@@ -1,5 +1,4 @@
 import { useState,useEffect } from "react"; 
-import PageNav from "../components/PageNav"; 
 const mockHotels = {
       'Andhra Pradesh': [
         { id: 101, name: 'Taj Banjara', address: 'Hyderabad, Andhra Pradesh' },
@@ -423,7 +422,6 @@ function BookingPage() {
   
   return (
     <div className="relative isolate px-6 lg:px-8">
-      <PageNav />
       <div className="mx-auto py-12 text-gray-200 sm:py-48 lg:py-6">
         
         <section className="bg-white dark:bg-gray-900">

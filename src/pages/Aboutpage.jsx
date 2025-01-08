@@ -1,11 +1,8 @@
 import { NavLink } from "react-router-dom";
-import Footer from "../components/Footer";
-import PageNav from "../components/PageNav";
 import { useEffect, useState } from "react";
 import ImageWithCursorEffect from "../components/ImageWithCursorEffect";
 
 function Aboutpage() {
-  // Typing text state for animation
   const [text, setText] = useState("");
   const [index, setIndex] = useState(0);
   const typingText = "We'll Love to see your Travel Memories...";
@@ -18,192 +15,178 @@ function Aboutpage() {
       }, 100);
       return () => clearTimeout(timeout);
     } else {
-      // Restart typing after a brief pause
       const restartTimeout = setTimeout(() => {
-        setText(""); // Reset the text
-        setIndex(0); // Reset the index
-      }, 2000); // Adjust delay before restarting
+        setText("");
+        setIndex(0);
+      }, 2000);
       return () => clearTimeout(restartTimeout);
     }
   }, [index, typingText]);
 
+  const testimonials = [
+    {
+      name: "Jane Doe",
+      role: "Adventure Traveler",
+      image: "https://randomuser.me/api/portraits/women/44.jpg",
+      text: "GlobeHoppin helped me discover places I'd never even considered visiting. Their platform made my trip unforgettable!",
+      rating: 4,
+      location: "New York, USA"
+    },
+    {
+      name: "John Smith",
+      role: "Family Traveler",
+      image: "https://randomuser.me/api/portraits/men/32.jpg",
+      text: "The team at GlobeHoppin truly understands what makes a travel adventure special. Can't wait to book my next trip!",
+      rating: 5,
+      location: "London, UK"
+    },
+    {
+      name: "Alex Lee",
+      role: "Solo Traveler",
+      image: "https://randomuser.me/api/portraits/men/64.jpg",
+      text: "Amazing service, stunning destinations, and a super easy booking process. My family had a blast on our latest vacation!",
+      rating: 5,
+      location: "Sydney, Australia"
+    }
+  ];
+
   return (
-    <>
-      <div className="relative isolate">    
-  {/* Padding on all sides was preventing the element from taking the full screen size.
-  Removing or adjusting it will allow full-width and height display. */}
-
-
-        <PageNav />
-        <div
-          className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 items-center py-12 sm:py-24 text-gray-200 lg:py-12"
-          style={{
-            backgroundImage:
-              "url(https://nextvacay.com/wp-content/uploads/2022/07/KW-why-travel-is-important.jpg.webp)", // Background image URL
-            backgroundSize: "cover", // Ensures the background image covers the entire div
-            backgroundPosition: "center", // Centers the background image
-            height: "90vh", // Adjust the height as needed
-            position: "relative", // Set position relative for absolute children
-          }}
-        >
-          {/* Gradient Overlay */}
-          <div
-            className="absolute inset-0 bg-gradient-to-b from-gray-800 to-transparent" // Gradient from dark gray to transparent
-            style={{
-              zIndex: 0, // Set zIndex to ensure it's behind the content
-              opacity: 5, // Adjust opacity as needed
-            }}
+    <div className="min-h-screen w-full pt-16">
+      {/* Hero Section */}
+      <div className="relative h-screen w-full">
+        <div className="absolute inset-0">
+          <img
+            src="https://nextvacay.com/wp-content/uploads/2022/07/KW-why-travel-is-important.jpg.webp"
+            alt="Travel Background"
+            className="w-full h-full object-cover"
           />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50" />
+        </div>
 
-          {/* Left side: Typing text */}
-          <div
-            className="relative z-10 space-y-5" // Added z-10 to ensure it's above the gradient
-            style={{
-              maxWidth: "600px", // Adjust the maximum width as needed
-              width: "100%", // Ensures full width is used within the max limit
-              marginLeft: "40px", // Centers the text
-            }}
-          >
-            <h1
-              className="text-3xl font-extrabold tracking-tight leading-none text-white md:text-4xl lg:text-5xl"
-              style={{
-                fontSize: "4rem", // Adjust the font size as necessary
-              }}
-            >
-              {text}
-            </h1>
-            <p
-              className="text-lg font-normal text-white lg:text-sl"
-              style={{
-                fontSize: "1rem", // Adjust the font size as necessary
-              }}
-            >
-              At GlobeHoppin, we deeply value the remarkable travel stories
-              shared by our community. Each adventure inspires us to design even
-              more unforgettable travel experiences, enhancing the journey for
-              all. Your unique tales not only motivate us but also connect
-              fellow travelers, creating a tapestry of shared memories and
-              inspiration. Join us in celebrating these adventures and crafting
-              new ones together!
+        <div className="relative h-full w-full flex items-center">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              {/* Left Content */}
+              <div className="space-y-8">
+                <div className="space-y-4">
+                  <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight animate-fade-in">
+                    {text}
+                  </h1>
+                  <p className="text-xl text-gray-200 leading-relaxed max-w-2xl animate-fade-in-up">
+                    At GlobeHoppin, we deeply value the remarkable travel stories shared by our community. 
+                    Each adventure inspires us to design even more unforgettable travel experiences.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-6 animate-fade-in-up delay-200">
+                  <NavLink
+                    to="/contact"
+                    className="group inline-flex items-center px-8 py-4 text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-full transition-all duration-300 shadow-lg hover:shadow-blue-500/30"
+                  >
+                    Contact Us
+                    <svg className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </NavLink>
+                  <NavLink
+                    to="/#faq"
+                    className="inline-flex items-center px-8 py-4 text-lg font-semibold text-white border-2 border-white hover:bg-white hover:text-gray-900 rounded-full transition-all duration-300"
+                  >
+                    Learn More
+                  </NavLink>
+                </div>
+              </div>
+
+              {/* Right Content - Image Effect */}
+              <div className="hidden lg:block animate-fade-in-left">
+                <ImageWithCursorEffect />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Testimonials Section */}
+      <section className="py-24 bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              What Our Travelers Say
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300">
+              Real stories from real travelers who have experienced the GlobeHoppin difference
             </p>
-            <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0">
-              <NavLink
-                to="/contact"
-                className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
-              >
-                Contact Us
-                <svg
-                  className="w-3.5 h-3.5 ms-2 rtl:rotate-180"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 14 10"
-                >
-                  <path stroke="currentColor" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                </svg>
-              </NavLink>
-              <NavLink
-                to="/#faq" // Add path to navigate FAQ section from home page
-                className="inline-flex justify-center items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-white rounded-lg border border-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-400"
-              >
-                FAQ
-              </NavLink>
-            </div>
           </div>
-
-          {/* Right side: Image with motion */}
-          {/* THhis is cursor effect changes made  */}
-          <ImageWithCursorEffect />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {testimonials.map((testimonial, index) => (
+              <div 
+                key={index}
+                className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-16 h-16 rounded-full object-cover ring-4 ring-blue-500/30"
+                  />
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                      {testimonial.name}
+                    </h3>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">{testimonial.role}</p>
+                    <p className="text-sm text-blue-600 dark:text-blue-400">{testimonial.location}</p>
+                  </div>
+                </div>
+                <div className="flex text-yellow-400 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      className={`w-5 h-5 ${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                  {testimonial.text}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
+      </section>
 
-        {/* Additional Content: Testimonials and Client Reviews */}
-        <div className="py-12 bg-gray-800 text-gray-200">
-          <h2 className="text-center text-3xl font-extrabold mb-8">
-            What Our Clients Say
+      {/* Call to Action Section */}
+      <section className="relative py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600">
+          <div className="absolute inset-0 bg-grid-white/[0.1] bg-[length:16px_16px]" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl font-bold text-white mb-6">
+            Ready to Start Your Journey?
           </h2>
-          <div className="flex justify-center">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {/* Testimonial 1 */}
-              <div className="mx-6 p-8 bg-gray-900 rounded-lg shadow-lg text-center transition-transform duration-300 transform hover:scale-105">
-                {/* Avatar */}
-                <img
-                  src="https://randomuser.me/api/portraits/women/44.jpg"
-                  alt="Jane Doe"
-                  className="w-16 h-16 rounded-full mx-auto mb-4 border-4 border-yellow-500"
-                />
-                <div className="text-lg font-semibold mb-2">Jane Doe</div>
-                <p className="text-sm font-light mb-4">
-                  &quot;GlobeHoppin helped me discover places I&apos;d never
-                  even considered visiting. Their platform made my trip
-                  unforgettable!&quot;
-                </p>
-                <div className="flex justify-center text-yellow-500">★★★★☆</div>
-              </div>
-
-              {/* Testimonial 2 */}
-              <div className="mx-6 p-8 bg-gray-900 rounded-lg shadow-lg text-center transition-transform duration-300 transform hover:scale-105">
-                {/* Avatar */}
-                <img
-                  src="https://randomuser.me/api/portraits/men/32.jpg"
-                  alt="John Smith"
-                  className="w-16 h-16 rounded-full mx-auto mb-4 border-4 border-yellow-500"
-                />
-                <div className="text-lg font-semibold mb-2">John Smith</div>
-                <p className="text-sm font-light mb-4">
-                  &quot;The team at GlobeHoppin truly understands what makes a
-                  travel adventure special. Can&apos;t wait to book my next
-                  trip!&quot;
-                </p>
-                <div className="flex justify-center text-yellow-500">★★★★★</div>
-              </div>
-
-              {/* Testimonial 3 */}
-              <div className="mx-6 p-5 bg-gray-900 rounded-lg shadow-lg text-center transition-transform duration-300 transform hover:scale-105">
-                {/* Avatar */}
-                <img
-                  src="https://randomuser.me/api/portraits/men/64.jpg"
-                  alt="Alex Lee"
-                  className="w-16 h-16 rounded-full mx-auto mb-4 border-4 border-yellow-500"
-                />
-                <div className="text-lg font-semibold mb-2">Alex Lee</div>
-                <p className="text-sm font-light mb-4">
-                  &quot;Amazing service, stunning destinations, and a super easy
-                  booking process. My family had a blast on our latest
-                  vacation!&quot;
-                </p>
-                <div className="flex justify-center text-yellow-500">★★★★★</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* More About Us Section */}
-        <div className="py-12 bg-gray-700 text-gray-300 text-center">
-          <h2 className="text-2xl font-extrabold mb-4">Why Choose Us?</h2>
-          <p className="text-lg mb-6">
-            At GlobeHoppin, we not only bring you closer to exciting travel
-            experiences but also ensure a personalized journey that reflects
-            your unique style. From mountain peaks to serene beaches, our
-            community’s memories inspire us to continue exploring the world.
+          <p className="text-xl text-gray-100 mb-12 max-w-2xl mx-auto">
+            Join our community of travelers and start sharing your adventures with the world.
+            Create memories that last a lifetime.
           </p>
-          <div className="flex justify-center gap-4 mt-8">
+          <div className="flex flex-wrap justify-center gap-6">
             <NavLink
               to="/contact"
-              className="rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 hover:scale-105 transition-transform duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="px-8 py-4 bg-white text-blue-600 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               Contact Us
             </NavLink>
             <NavLink
               to="/signup"
-              className="rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 hover:scale-105 transition-transform duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300"
             >
-              Join Us
+              Join Now
             </NavLink>
           </div>
         </div>
-      </div>
-      <Footer />
-    </>
+      </section>
+    </div>
   );
 }
 

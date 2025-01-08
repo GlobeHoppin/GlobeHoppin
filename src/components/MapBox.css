@@ -1,0 +1,72 @@
+.map-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.popup-content {
+  padding: 8px;
+  max-width: 300px;
+}
+
+.popup-content h3 {
+  margin: 0 0 8px 0;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.popup-content p {
+  margin: 8px 0;
+  color: #666;
+}
+
+.popup-content small {
+  color: #888;
+  display: block;
+  margin-top: 4px;
+}
+
+.popup-image {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+.form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 90%;
+  max-width: 400px;
+}
+
+.form-container input,
+.form-container textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-container button {
+  background: #4169E1;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.form-container button:hover {
+  background: #3154b3;
+} 

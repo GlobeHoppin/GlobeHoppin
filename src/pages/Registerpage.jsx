@@ -1,7 +1,5 @@
-import PageNav from "../components/PageNav";
 import { NavLink } from "react-router-dom";
 import signupimg from "/signupimg.png";
-import Footer from "../components/Footer";
 import { toast } from "react-hot-toast";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -16,144 +14,161 @@ function Registerpage() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("BACKEND_CALL SIGNUP...");
-    const toastId = toast.loading("Loading...");
+    if (pass !== cPass) {
+      toast.error("Passwords do not match!");
+      return;
+    }
     
-		try {
-      await signup({email, name, password: pass,});
-			toast.success("Signup Successful");
-			navigate("/");
-		} catch (error) {
+    const toastId = toast.loading("Creating your account...");
+    try {
+      await signup({ email, name, password: pass });
+      toast.success("Welcome to GlobeHoppin! 🌎");
+      navigate("/");
+    } catch (error) {
       console.log("SIGNUP API ERROR............", error);
-			toast.error("Signup Failed");
-			navigate("/signup");
-		}
-		// dispatch(setLoading(false));
-		toast.dismiss(toastId);
+      toast.error("Signup failed. Please try again.");
+    }
+    toast.dismiss(toastId);
   }
+
   return (
-    <>
-      <div className="relative isolate px-6 pt-14 lg:px-8">
-        <PageNav />
-        <div className="mx-auto text-gray-200">
-          <div className="grid md:grid-cols-2">
-            <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-              <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-40">
-                <div className="text-center">
-                  <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
-                       Signup In Our  World                
-                    </span>
-                  </h1>
-                  <p className="text-gray-100 sm:text-2xl mt-2">
-                    GlobeHoppin keeps track of your adventures.
-                  </p>
-                  <div className="mt-10 flex items-center justify-center gap-x-6">
-                    <img
-                      src={signupimg}
-                      alt="Login Page Image"
-                      width="300px"
-                      height="300px"
-                    />
-                  </div>
-                </div>
-              </div>
+    <div className="min-h-screen dark:from-gray-900 dark:to-gray-800 pt-16">
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-12 max-w-7xl mx-auto">
+          {/* Left Side - Welcome Content - Hidden on mobile */}
+          <div className="hidden lg:flex flex-1 flex-col text-center lg:text-left">
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Join Our Global Community
+              </span>
+            </h1>
+            <p className="text-gray-600 dark:text-gray-300 text-lg mb-8 max-w-xl">
+              Start tracking your adventures and connecting with fellow travelers around the world.
+            </p>
+            <div className="relative">
+              <img
+                src={signupimg}
+                alt="Travel Adventures"
+                className="max-w-md mx-auto lg:mx-0 rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl" />
             </div>
-            <div className="">
-              <section className="bg-gray-50 dark:bg-gray-900">
-                <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                  <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-                    <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                      <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                        Create an account
-                      </h1>
-                      <form className="space-y-4 md:space-y-6" onSubmit={submitHandler}>
-                        <div>
-                          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Your Name
-                          </label>
-                          <input
-                            type="text"
-                            name="name"
-                            id="name"
-                            value={name}
-                            onChange={(e)=>setName(e.target.value)}
-                            className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Enter name.."
-                            required=""
-                          />
-                        </div>
-                        <div>
-                          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Your email
-                          </label>
-                          <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            value={email}
-                            onChange={(e)=>setEmail(e.target.value)}
-                            className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="name@email.com"
-                            required=""
-                          />
-                        </div>
-                        <div>
-                          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Password
-                          </label>
-                          <input
-                            type="password"
-                            name="password"
-                            id="password"
-                            onChange={(e) => setPass(e.target.value)}
-                            value={pass}
-                            placeholder="••••••••"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            required=""
-                          />
-                        </div>
-                        <div>
-                          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Confirm password
-                          </label>
-                          <input
-                            type="password"
-                            name="confirm-password"
-                            id="confirm-password"
-                            value={cPass}
-                            onChange={(e)=>setCPass(e.target.value)}
-                            placeholder="••••••••"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            required=""
-                          />
-                        </div>
-                        <button
-                          type="submit"
-                          className="w-full text-white bg-blue-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-700 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                        >
-                          Create an Account
-                        </button>
-                        <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                          Already have an account?{" "}
-                          <NavLink
-                            to="/signin"
-                            className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                          >
-                            Signin
-                          </NavLink>
-                        </p>
-                      </form>
-                    </div>
-                  </div>
+          </div>
+
+          {/* Right Side - Sign Up Form */}
+          <div className="w-full lg:flex-1 max-w-md">
+            {/* Mobile Header - Shown only on mobile */}
+            <div className="lg:hidden text-center mb-8">
+              <h1 className="text-3xl font-bold mb-4">
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Join GlobeHoppin
+                </span>
+              </h1>
+              <p className="text-gray-600 dark:text-gray-300">
+                Start your journey with us today
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 lg:p-8">
+              <div className="mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                  Create your account
+                </h2>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Already have an account?{" "}
+                  <NavLink to="/signin" className="text-blue-600 hover:text-blue-700 font-medium">
+                    Sign in
+                  </NavLink>
+                </p>
+              </div>
+
+              <form onSubmit={submitHandler} className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    placeholder="John Doe"
+                    required
+                  />
                 </div>
-              </section>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    placeholder="you@example.com"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    value={pass}
+                    onChange={(e) => setPass(e.target.value)}
+                    className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    placeholder="••••••••"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Confirm Password
+                  </label>
+                  <input
+                    type="password"
+                    value={cPass}
+                    onChange={(e) => setCPass(e.target.value)}
+                    className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    placeholder="••••••••"
+                    required
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transform transition-all duration-200 hover:scale-[1.02]"
+                >
+                  Create Account
+                </button>
+
+                <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-4">
+                  By signing up, you agree to our{" "}
+                  <NavLink to="/terms" className="text-blue-600 hover:underline">
+                    Terms of Service
+                  </NavLink>{" "}
+                  and{" "}
+                  <NavLink to="/privacy" className="text-blue-600 hover:underline">
+                    Privacy Policy
+                  </NavLink>
+                </p>
+              </form>
+            </div>
+
+            {/* Social Proof - Optional */}
+            <div className="mt-8 text-center hidden sm:block">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                Trusted by travelers from over 50+ countries
+              </p>
             </div>
           </div>
         </div>
       </div>
-      <Footer />
-    </>
+    </div>
   );
 }
 

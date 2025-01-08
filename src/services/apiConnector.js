@@ -1,7 +1,7 @@
 /** @format */
 
 import axios from "axios";
-import { ADD_PIN, GET_PROFILE, LOGIN_API, SIGNUP_API } from "../ApiEndpoints";
+import { ADD_PIN, GET_PROFILE, LOGIN_API, SIGNUP_API, UPDATE_PIN } from "../ApiEndpoints";
 import { getTokenFromSessionStorage, saveProfileToSessionStorage, saveTokenToSessionStorage } from "./utils";
 
 export const axiosInstance = axios.create({});
@@ -78,3 +78,19 @@ export const addPin = async (body) => {
 		throw error;
 	}
 }
+
+export const updatePin = async (pinId, pinData) => {
+	try {
+		const response = await apiConnector("POST", `${UPDATE_PIN}/${pinId}`, pinData, {
+			Authorization: `Bearer ${getTokenFromSessionStorage()}`,
+		});
+		console.log("UPDATE PIN API RESPONSE............", response);
+		if (response.error) {
+			throw new Error(response.error.message);
+		}
+		await getProfile();
+	} catch (error) {
+		console.log("UPDATE PIN API ERROR............", error);
+		throw error;
+	}
+};

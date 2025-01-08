@@ -1,5 +1,4 @@
 import { useState} from "react";
-import PageNav from "../components/PageNav";
 import ReviewCarousel from "../components/ReviewCarousel";
 import { REVIEW_GET_POST } from "../ApiEndpoints";
 const ReviewsAndRatings = () => {
@@ -115,7 +114,6 @@ const ReviewsAndRatings = () => {
 
   return (
     <>
-      <PageNav />
       <div className="p-6 bg-gray-100 mt-32 text-black rounded-lg shadow-md max-w-4xl mx-auto">
         <h2 className="text-3xl font-semibold mb-6 text-center text-gray-800">
           Reviews and Ratings

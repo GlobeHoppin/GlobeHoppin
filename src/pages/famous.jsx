@@ -1,6 +1,5 @@
 import { useState } from "react"; 
 
-import PageNav from "../components/PageNav"; 
 const famousPlaces = {
     'Andhra Pradesh': [
         { name: "Tirupati Temple", cuisine: "Pulihora", culture: "Famous pilgrimage site.", location: "Tirupati" },
@@ -364,7 +363,6 @@ const famousPlaces = {
   
     return (
       <div className="relative isolate px-6 pt-14 lg:px-8">
-         <PageNav />
         <div className="mx-auto py-12 text-gray-200 sm:py-48 lg:py-12">
           <section className="bg-white dark:bg-gray-900">
             <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">

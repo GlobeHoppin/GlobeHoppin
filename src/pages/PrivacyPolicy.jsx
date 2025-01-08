@@ -1,5 +1,3 @@
-import PageNav from "../components/PageNav";
-import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
 
 function PrivacyPolicy() {
@@ -15,7 +13,6 @@ function PrivacyPolicy() {
   return (
     <>
       <div className="relative isolate px-6 pt-14 lg:px-8 bg-gradient-to-r from-blue-50 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800">
-        <PageNav />
         <div className="-mt-6 mx-auto py-12 sm:py-24 lg:py-16 text-gray-200 max-w-3xl">
           <section className="bg-white dark:bg-gray-900 shadow-lg rounded-lg p-8 lg:p-12">
             <h2
@@ -128,7 +125,6 @@ function PrivacyPolicy() {
           </section>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

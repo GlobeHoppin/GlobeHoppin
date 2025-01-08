@@ -5,3 +5,4 @@ export const LOGIN_API = API_BASE_URL + "/auth/signin";
 export const REVIEW_GET_POST = API_BASE_URL + "/review/reviews";
 export const GET_PROFILE = API_BASE_URL + "/user";
 export const ADD_PIN = API_BASE_URL + "/pin";
+export const UPDATE_PIN = API_BASE_URL + "/pin";

@@ -131,6 +131,26 @@ select {
     margin: 0; /* Remove default margin */
   }
 
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  padding: 2rem 0;  /* Add some vertical padding */
+  width: 100%;
+  max-width: 1200px;  /* Optional: limit maximum width */
+  margin: 0 auto;    /* Center the content */
+}
+
+/* If you have any pages with full-width content, add this class */
+.full-width {
+  max-width: none;
+  padding: 0;
+}
+
 
   
 

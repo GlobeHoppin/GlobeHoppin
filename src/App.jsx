@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import RootLayout from "./components/RootLayout";
 import Aboutpage from "./pages/Aboutpage";
 import Homepage from "./pages/Homepage";
 import PageNotFound from "./pages/PageNotFound";
@@ -13,7 +14,7 @@ import PageNotFound from "./pages/PageNotFound";
 
 import "./App.css";
 
-import Applayout from "./pages/globe";
+import Globe from "./pages/globe";
 import Contactpage from "./pages/Contactpage";
 import BookingPage from "./pages/booking";
 
@@ -37,15 +38,16 @@ import TripBudgetCalculator from "./pages/TripBudgetCalculatorPage";
 import ReviewsAndRatings from "./pages/Review";
 import Profile from "./pages/Profile";
 import { Pin } from "./pages/Pin";
+import EmbedGlobe from "./pages/EmbedGlobe";
 
 const App = () => {
   return (
-    <>
-      <BrowserRouter>
+    <BrowserRouter>
+      <RootLayout>
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="globe" element={<Applayout />} />
+          <Route path="globe" element={<Globe />} />
           <Route path="/pin" element={<Pin />} />
           <Route path="contact" element={<Contactpage />} />
           <Route path="BookingPage" element={<BookingPage />} />
@@ -65,10 +67,12 @@ const App = () => {
           {/* Add the FAQPage route */}
           <Route path="trip-budget" element={<TripBudgetCalculator />} />
           <Route path="review" element={<ReviewsAndRatings />} />
+          <Route path="/share/:userId" element={<Globe />} />
+          <Route path="/embed/:userId" element={<EmbedGlobe />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
-      </BrowserRouter>
-    </>
+      </RootLayout>
+    </BrowserRouter>
   );
 };
 

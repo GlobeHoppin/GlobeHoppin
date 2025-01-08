@@ -1,4 +1,3 @@
-import PageNav from "../components/PageNav";
 import { Box, Typography, Paper, Button } from "@mui/material";
 import { styled } from "@mui/system";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -68,7 +67,6 @@ const BackgroundContainer = styled(Box)(() => ({
 const TermsOfUse = () => {
   return (
     <div className="relative isolate px-6 pt-14 lg:px-8">
-      <PageNav />
       <ThemeProvider theme={theme}>
         <BackgroundContainer>
           <PolicyContainer>

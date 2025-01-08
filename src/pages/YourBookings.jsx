@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import PageNav from "../components/PageNav";
 
 function YourBookings() {
   const [bookings, setBookings] = useState([]);
@@ -30,7 +29,6 @@ function YourBookings() {
 
   return (
     <div className="relative isolate px-6 pt-14 lg:px-8 bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-600 min-h-screen">
-      <PageNav />
       <div className="mx-auto py-12 text-gray-200 sm:py-48 lg:py-12">
         <section className="bg-white dark:bg-gray-900 rounded-lg shadow-lg">
           <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">

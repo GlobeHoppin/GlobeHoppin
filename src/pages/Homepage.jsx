@@ -1,6 +1,4 @@
 import { NavLink } from "react-router-dom";
-import PageNav from "../components/PageNav";
-import Footer from "../components/Footer";
 import {
   MapPinIcon,
   CameraIcon,
@@ -70,7 +68,6 @@ function Homepage() {
   return (
     <>
       <div>
-        <PageNav />
         <div className="relative isolate px-6 pt-14 lg:px-8">
           <div
             aria-hidden="true"
@@ -176,7 +173,6 @@ function Homepage() {
           <FAQ /> {/* This will render the FAQ section */}
         </section>
 
-        <Footer />
       </div>
     </>
   );

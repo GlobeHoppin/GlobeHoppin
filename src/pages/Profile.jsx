@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import Footer from "../components/Footer";
-import PageNav from "../components/PageNav";
 import { getProfileFromSessionStorage, isSignedIn } from "../services/utils";
 
 function Profile() {
@@ -18,7 +16,6 @@ function Profile() {
 
     return (
         <div>
-            <PageNav />
             <div className="flex flex-col items-center justify-center min-h-screen">
                 <div className="w-full max-w-4xl p-4 rounded-lg shadow-md">
                     <h1 className="text-4xl font-bold text-gray-500">Profile</h1>
@@ -81,7 +78,6 @@ function Profile() {
                     </div>
                 </div>
             </div>
-            <Footer />
         </div>
     );
 }
