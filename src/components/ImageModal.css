@@ -1,0 +1,76 @@
+/* Main modal overlay */
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+}
+
+/* New container for the image and text */
+.modal-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px; /* Space between image and text */
+    max-width: 900px;
+    width: 90%;
+    background-color: #1f2937; /* Dark background for the content box */
+    padding: 30px;
+    border-radius: 8px;
+    position: relative;
+}
+
+/* Left Column: Image container */
+.modal-image-container {
+    flex: 1; /* Takes up half the space */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* The image itself, now uniformly sized */
+.modal-content {
+    max-height: 500px;
+    max-width: 100%;
+    object-fit: contain; /* Keeps aspect ratio without stretching */
+    display: block;
+    border-radius: 4px;
+}
+
+/* Right Column: Text container */
+.modal-text-container {
+    flex: 1; /* Takes up the other half of the space */
+    color: #fff;
+    text-align: left;
+}
+
+.modal-title {
+  margin-bottom: 15px;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.modal-description {
+  color: #ccc !important; /* !important ensures this color is used */
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Close button styling */
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
