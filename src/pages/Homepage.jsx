@@ -8,10 +8,12 @@ import {
 import FAQ from "../components/FAQ";
 import { useEffect, useState } from "react";
 import { isSignedIn } from "../services/utils";
+import ImageModal from "../components/ImageModal"; // Import the modal component
 
 function Homepage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
+  const [modalImage, setModalImage] = useState(null); // State for the selected image object
+
   useEffect(() => {
     setIsLoggedIn(isSignedIn());
   }, [isLoggedIn]);
@@ -39,29 +41,42 @@ function Homepage() {
     },
   ];
 
+  // Updated data array with titles and descriptions
   const data = [
     {
       imageLink:
         "https://www.travelandleisure.com/thmb/tI_b5crpL54kwpahq2MxEK0crBw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/TAL-istanbul-WHENTURKEY0923-44a65552a3774c1aa878722306c7f8f4.jpg",
+      title: "Istanbul, Turkey",
+      description: "A vibrant city that straddles Europe and Asia across the Bosphorus Strait."
     },
     {
       imageLink: "https://etimg.etb2bimg.com/photo/97052424.cms",
+      title: "Mumbai, India",
+      description: "India's largest city, famous for the Bollywood film industry and colonial architecture."
     },
     {
       imageLink:
         "https://media.istockphoto.com/id/466842820/photo/petronas-towers.jpg?s=612x612&w=0&k=20&c=X_Kl-W_ulJEzjvaaT8gRNTQWHboyLKaedXol5EPhGdI=",
+      title: "Kuala Lumpur, Malaysia",
+      description: "Home to the iconic Petronas Twin Towers, a symbol of modern Malaysia."
     },
     {
       imageLink:
         "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/15/6d/d6/paris.jpg?w=1400&h=1400&s=1",
+      title: "Paris, France",
+      description: "Known as the 'City of Love,' famous for landmarks like the Eiffel Tower and the Louvre."
     },
     {
       imageLink:
         "https://www.travelandleisure.com/thmb/91pb8LbDAUwUN_11wATYjx5oF8Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/new-york-city-evening-NYCTG0221-52492d6ccab44f328a1c89f41ac02aea.jpg",
+      title: "New York City, USA",
+      description: "The city that never sleeps, featuring iconic sights like Times Square and Central Park."
     },
     {
       imageLink:
         "https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80",
+      title: "Al-Ula, Saudi Arabia",
+      description: "A breathtaking desert landscape with ancient tombs and stunning natural rock formations."
     },
   ];
 
@@ -69,6 +84,7 @@ function Homepage() {
     <>
       <div>
         <div className="relative isolate px-6 pt-14 lg:px-8">
+          {/* ... (rest of the Hero section code) ... */}
           <div
             aria-hidden="true"
             className="absolute inset-x-0 -top-40 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -94,7 +110,7 @@ function Homepage() {
             <div className="text-center">
               <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
-                You Travel the World
+                  You Travel the World
                 </span>
               </h1>
               <p className="text-gray-100 sm:text-lg md:mb-12 md:text-xl">
@@ -102,30 +118,24 @@ function Homepage() {
                 journeys with our app.
               </p>
 
-              {/* Changes Made below added: [py-3 grid gap-3], modified To: [md:flex md:justify-center md:gap-x-6 md:w-full] */}
-
-              {
-                !isLoggedIn ? (
-                  <div className="py-3 grid gap-3 md:flex md:justify-center md:gap-x-6 md:w-full">
-                    <NavLink
-                      to="/signin"
-                      className="rounded-md bg-indigo-600 px-4 py-2 text-lg font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    >
-                      Signin
-                    </NavLink>
-
-                    {/* Changes Made here text-gray-900 to  text-white, adjusted padding and text-sm to text-lg(to make visible better) */}
-
-                    <NavLink
-                      to="/signup"
-                      className="rounded-md px-4 py-2 text-lg font-semibold text-white border border-white-900 hover:border-blue-500"
-                    >
-                      Signup
-                    </NavLink>
-                  </div>
-                ): <div></div>
-              }
-        
+              {!isLoggedIn ? (
+                <div className="py-3 grid gap-3 md:flex md:justify-center md:gap-x-6 md:w-full">
+                  <NavLink
+                    to="/signin"
+                    className="rounded-md bg-indigo-600 px-4 py-2 text-lg font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Signin
+                  </NavLink>
+                  <NavLink
+                    to="/signup"
+                    className="rounded-md px-4 py-2 text-lg font-semibold text-white border border-white-900 hover:border-blue-500"
+                  >
+                    Signup
+                  </NavLink>
+                </div>
+              ) : (
+                <div></div>
+              )}
             </div>
           </div>
         </div>
@@ -161,19 +171,28 @@ function Homepage() {
               <div key={index} className="overflow-hidden rounded-lg shadow-lg">
                 <img
                   src={item.imageLink}
-                  alt={`Gallery image ${index + 1}`}
+                  alt={item.title}
                   className="w-full h-56 object-cover"
+                  onClick={() => setModalImage(item)} // Pass the whole item object
+                  style={{ cursor: "pointer" }}
                 />
               </div>
             ))}
           </div>
         </div>
-        <section id="faq">
-          {/* FAQ Section */}
-          <FAQ /> {/* This will render the FAQ section */}
-        </section>
 
+        <section id="faq">
+          <FAQ />
+        </section>
       </div>
+
+      {/* Render the Modal with all the necessary data */}
+      <ImageModal 
+        src={modalImage?.imageLink} 
+        title={modalImage?.title}
+        description={modalImage?.description}
+        onClose={() => setModalImage(null)} 
+      />
     </>
   );
 }
